@@ -1,0 +1,47 @@
+name: 静态wiki
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取最新代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 3.10 环境
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: 安装 mkdocs-material
+        run: pip install mkdocs-material
+
+      - name: 生成静态站点
+        run: mkdocs build
+
+      - name: 提交 `site/` 目录到当前仓库
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add site/
+          git commit -m "自动更新 mkdocs 站点" || echo "No changes to commit"
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: 复制 `site/` 目录到另一个仓库
+        env:
+          TARGET_REPO: "your-username/your-target-repo" # 目标仓库
+          TARGET_BRANCH: "main"
+          GITHUB_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+        run: |
+          git clone https://github.com/$TARGET_REPO.git target-repo
+          cp -r site/* target-repo/
+          cd target-repo
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "更新静态站点" || echo "No changes to commit"
+          git push https://x-access-token:$GITHUB_TOKEN@github.com/$TARGET_REPO.git HEAD:$TARGET_BRANCH
