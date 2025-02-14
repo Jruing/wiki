@@ -41,6 +41,7 @@ nav:
     - Docker-compose安装: kubernetes/Docker-Compose安装.md
   - 爬虫:
     - JsRPC练习: Spider/JsRpc练习.md
+    - 有道翻译爬虫: Spider/有道翻译爬虫.md
   - Linux:
     - systemd: Linux/Systemd 学习笔记.md
     - 监控:
