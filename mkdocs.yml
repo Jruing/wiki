@@ -40,6 +40,7 @@ nav:
     - context上下文管理器: Python/Golang 学习笔记-context上下文管理器.md
     - property和setter: Python/Python学习笔记-property和setter.md
     - 装饰器: Python/Python学习笔记-装饰器.md
+    - __missing用法__: Python/Python学习笔记-__missing用法__.md
     - 其他:
       - Apscheduler使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
       - Zipapp打包可执行文件: Python/other/Python学习笔记-Zipapp打包可执行文件.md
