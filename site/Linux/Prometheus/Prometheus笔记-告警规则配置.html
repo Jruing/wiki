@@ -8,23 +8,25 @@
       
       
       
-        <link rel="canonical" href="http://127.0.0.1:8000/index.html">
+        <link rel="canonical" href="http://127.0.0.1:8000/Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE.html">
       
       
+        <link rel="prev" href="Prometheus%E7%AC%94%E8%AE%B0-Label%E6%A0%87%E7%AD%BE.html">
       
-        <link rel="next" href="Python/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Schema%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%B1%BB%E5%9E%8B%E6%A0%A1%E9%AA%8C.html">
+      
+        <link rel="next" href="Prometheus%E7%AC%94%E8%AE%B0-Grafana%E5%8F%AF%E8%A7%86%E5%8C%96.html">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
-        <title>关于 - Wiki</title>
+        <title>告警规则配置 - Wiki</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
       
       
 
@@ -43,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-mkdocs1111" class="md-skip">
+        <a href="#demo" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +80,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Wiki" class="md-header__button md-logo" aria-label="Wiki" data-md-component="logo">
+    <a href="../.." title="Wiki" class="md-header__button md-logo" aria-label="Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              关于
+              告警规则配置
             
           </span>
         </div>
@@ -159,13 +161,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="index.html" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../index.html" class="md-tabs__link">
           
   
   简介
@@ -183,7 +183,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="Python/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Schema%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%B1%BB%E5%9E%8B%E6%A0%A1%E9%AA%8C.html" class="md-tabs__link">
+        <a href="../../Python/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Schema%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%B1%BB%E5%9E%8B%E6%A0%A1%E9%AA%8C.html" class="md-tabs__link">
           
   
   Python
@@ -201,7 +201,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="Golang/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html" class="md-tabs__link">
+        <a href="../../Golang/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html" class="md-tabs__link">
           
   
   Golang
@@ -225,7 +225,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="database/postgres/Postgres%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Sequence%E8%87%AA%E5%A2%9E%E5%BA%8F%E5%88%97.html" class="md-tabs__link">
+        <a href="../../database/postgres/Postgres%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Sequence%E8%87%AA%E5%A2%9E%E5%BA%8F%E5%88%97.html" class="md-tabs__link">
           
   
   数据库
@@ -246,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="automation/Selenium%E6%8E%A5%E7%AE%A1%E5%B7%B2%E6%89%93%E5%BC%80%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-tabs__link">
+        <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E5%B7%B2%E6%89%93%E5%BC%80%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-tabs__link">
           
   
   自动化
@@ -264,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="kubernetes/Docker-Compose%E5%AE%89%E8%A3%85.html" class="md-tabs__link">
+        <a href="../../kubernetes/Docker-Compose%E5%AE%89%E8%A3%85.html" class="md-tabs__link">
           
   
   kuberntes
@@ -282,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="Spider/JsRpc%E7%BB%83%E4%B9%A0.html" class="md-tabs__link">
+        <a href="../../Spider/JsRpc%E7%BB%83%E4%B9%A0.html" class="md-tabs__link">
           
   
   爬虫
@@ -296,11 +296,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="Linux/Systemd%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Systemd%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-tabs__link">
           
   
   Linux
@@ -324,7 +326,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="Linux/serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E6%90%AD%E5%BB%BA.html" class="md-tabs__link">
+        <a href="../serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E6%90%AD%E5%BB%BA.html" class="md-tabs__link">
           
   
   ServerLess
@@ -351,7 +353,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="front/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-js%E5%AE%9E%E7%8E%B0%E6%8B%B7%E8%B4%9D%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD.html" class="md-tabs__link">
+        <a href="../../front/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-js%E5%AE%9E%E7%8E%B0%E6%8B%B7%E8%B4%9D%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD.html" class="md-tabs__link">
           
   
   前端
@@ -372,7 +374,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="other/UPX%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html" class="md-tabs__link">
+        <a href="../../other/UPX%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html" class="md-tabs__link">
           
   
   未分类
@@ -411,7 +413,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Wiki" class="md-nav__button md-logo" aria-label="Wiki" data-md-component="logo">
+    <a href="../.." title="Wiki" class="md-nav__button md-logo" aria-label="Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -426,28 +428,25 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -459,7 +458,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             简介
@@ -470,31 +469,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    关于
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,44 +482,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -602,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Python/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Schema%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%B1%BB%E5%9E%8B%E6%A0%A1%E9%AA%8C.html" class="md-nav__link">
+      <a href="../../Python/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Schema%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%B1%BB%E5%9E%8B%E6%A0%A1%E9%AA%8C.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -672,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Golang/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html" class="md-nav__link">
+      <a href="../../Golang/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -783,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="database/postgres/Postgres%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Sequence%E8%87%AA%E5%A2%9E%E5%BA%8F%E5%88%97.html" class="md-nav__link">
+      <a href="../../database/postgres/Postgres%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Sequence%E8%87%AA%E5%A2%9E%E5%BA%8F%E5%88%97.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -854,7 +794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="database/postgres/Redis7.XCentos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
+      <a href="../../database/postgres/Redis7.XCentos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -932,7 +872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="automation/Selenium%E6%8E%A5%E7%AE%A1%E5%B7%B2%E6%89%93%E5%BC%80%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-nav__link">
+      <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E5%B7%B2%E6%89%93%E5%BC%80%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1002,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="kubernetes/Docker-Compose%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      <a href="../../kubernetes/Docker-Compose%E5%AE%89%E8%A3%85.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1072,7 +1012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Spider/JsRpc%E7%BB%83%E4%B9%A0.html" class="md-nav__link">
+      <a href="../../Spider/JsRpc%E7%BB%83%E4%B9%A0.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1098,25 +1038,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1128,7 +1071,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Linux
@@ -1142,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Systemd%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+      <a href="../Systemd%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1205,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/monitor/%E5%9F%BA%E4%BA%8EGrafana%2BLoki%2BPromatil%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0.html" class="md-nav__link">
+      <a href="../monitor/%E5%9F%BA%E4%BA%8EGrafana%2BLoki%2BPromatil%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1227,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/monitor/Uptime-kuma%20%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+      <a href="../monitor/Uptime-kuma%20%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1254,8 +1197,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -1263,13 +1208,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
         
           
           <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
@@ -1284,7 +1227,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_3">
             <span class="md-nav__icon md-icon"></span>
             Prometheus
@@ -1298,7 +1241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1320,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1342,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-file_sd_config.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-file_sd_config.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1364,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85Node_exporter.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85Node_exporter.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1386,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85blackbox_exporter.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85blackbox_exporter.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1408,7 +1351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E7%9B%91%E6%8E%A7docker%E5%AE%B9%E5%99%A8.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E7%9B%91%E6%8E%A7docker%E5%AE%B9%E5%99%A8.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1430,7 +1373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E8%AE%BE%E7%BD%AEBasic_auth%E7%99%BB%E5%BD%95%E6%A0%A1%E9%AA%8C.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E8%AE%BE%E7%BD%AEBasic_auth%E7%99%BB%E5%BD%95%E6%A0%A1%E9%AA%8C.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1452,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-Label%E6%A0%87%E7%AD%BE.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-Label%E6%A0%87%E7%AD%BE.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1471,10 +1414,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    告警规则配置
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1484,6 +1446,60 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      告警规则Demo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prometheus-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus 配置文件-告警部分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      告警活动状态查询
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      展示效果
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1496,7 +1512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/Prometheus/Prometheus%E7%AC%94%E8%AE%B0-Grafana%E5%8F%AF%E8%A7%86%E5%8C%96.html" class="md-nav__link">
+      <a href="Prometheus%E7%AC%94%E8%AE%B0-Grafana%E5%8F%AF%E8%A7%86%E5%8C%96.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1615,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
+      <a href="../serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1637,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" class="md-nav__link">
+      <a href="../serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1659,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Linux/serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%90%AD%E5%BB%BAFN%E7%A4%BA%E4%BE%8B.html" class="md-nav__link">
+      <a href="../serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%90%AD%E5%BB%BAFN%E7%A4%BA%E4%BE%8B.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1778,7 +1794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="front/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-js%E5%AE%9E%E7%8E%B0%E6%8B%B7%E8%B4%9D%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD.html" class="md-nav__link">
+      <a href="../../front/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-js%E5%AE%9E%E7%8E%B0%E6%8B%B7%E8%B4%9D%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1856,7 +1872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="other/UPX%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+      <a href="../../other/UPX%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1878,7 +1894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="other/%E5%9F%BA%E4%BA%8E%E8%AE%A2%E9%98%85%E5%8F%B7%E5%BC%80%E5%8F%91%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.html" class="md-nav__link">
+      <a href="../../other/%E5%9F%BA%E4%BA%8E%E8%AE%A2%E9%98%85%E5%8F%B7%E5%BC%80%E5%8F%91%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1917,8 +1933,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1927,18 +1941,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#demo" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      告警规则Demo
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
+  <a href="#prometheus-" class="md-nav__link">
     <span class="md-ellipsis">
-      Project layout
+      Prometheus 配置文件-告警部分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      告警活动状态查询
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      展示效果
     </span>
   </a>
   
@@ -1960,22 +1992,65 @@
 
 
 
-<h1 id="welcome-to-mkdocs1111">Welcome to MkDocs1111</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    index_copy.md
-    ...       # Other markdown pages, images and other files.
+  <h1>告警规则配置</h1>
+
+<h2 id="demo">告警规则Demo</h2>
+<pre><code class="language-yaml">groups:
+# 告警组名称
+- name: host_memory 
+  rules:
+  # 告警规则名称
+  - alert: HighMemroy 
+    # 告警规则（例子：下面的告警规则是内存大于30%告警的PromQL查询语法）
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) / (node_memory_MemTotal_bytes )) * 100 &gt; 30
+    # for：等待时间，表示当触发条件持续一段时间后才会触发告警，在等待期间新产生的告警状态为pending
+    for: 1m
+    # 自定义标签，Prometheus本身有一部分标签，这里可以附加额外的标签到告警上
+    labels:
+      type: memory
+    # 用于指定一组附加信息，比如用于描述告警详细信息的文字等
+    annotations:
+      # 通过$labels.&lt;labelname&gt;变量可以访问当前告警实例中指定标签的值。$value则可以获取当前PromQL表达式计算的样本值。
+      # 这里是类似于标题的效果，简述下告警信息（比如是什么类型的告警）
+      summarg: &quot;Instance {{$labels.instance}} Memory high&quot;
+      # 这里相当于正文，主要描述告警的阈值，是哪台实例主机发生告警等详细信息
+      description: &quot;{{$labels.instance}} memory usage above 30% (current value :{{$value}})&quot;
 </code></pre>
+<h2 id="prometheus-">Prometheus 配置文件-告警部分</h2>
+<pre><code class="language-yaml"># my global config
+global:
+  scrape_interval: 15s 
+  evaluation_interval: 15s # 告警计算周期,默认为1m
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+rule_files:
+  # 告警规则文件存放路径，文件后缀必须是rules，比如 cpu.rules
+  - &quot;/usr/local/src/prometheus/prometheus-2.44.0-rc.2.linux-amd64/rules/*.rules&quot;
+scrape_configs:
+  - job_name: &quot;prometheus&quot;
+    static_configs:
+      - targets: [&quot;localhost:9090&quot;]
+  - job_name: &quot;node_exporter&quot;
+    static_configs:
+      - targets: [&quot;localhost:9100&quot;]
+  - job_name: &quot;nginx_exporter&quot;
+    static_configs:
+      - targets: [&quot;localhost:9113&quot;]
+</code></pre>
+<h2 id="_1">告警活动状态查询</h2>
+<pre><code>ALERTS{alertname=&quot;&lt;alert name&gt;&quot;, alertstate=&quot;pending|firing&quot;, &lt;additional alert labels&gt;}
+</code></pre>
+<p>样本值为1表示当前告警处于活动状态（pending或者firing），当告警从活动状态转换为非活动状态时，样本值则为0。</p>
+<h2 id="_2">展示效果</h2>
+<p>配置完成后重启Prometheus服务</p>
+<blockquote>
+<p>访问地址： http://localhost:9090/alerts?search=</p>
+</blockquote>
+<p><img alt="image-20230526151653888" src="https://jruing-blogs.oss-cn-beijing.aliyuncs.com/blogs/image-20230526151653888.png" /></p>
 
 
 
@@ -2028,10 +2103,10 @@ docs/
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.expand", "navigation.top", "content.code.copy"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.expand", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
       
     
   </body>
