@@ -53,6 +53,10 @@ nav:
     - Selenium: automation/Selenium接管已打开的浏览器.md
   - kuberntes:
     - Docker-compose安装: kubernetes/Docker-Compose安装.md
+    - 安装Nginx及实践应用: kubernetes/Docker 安装Nginx及实践应用.md
+    - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
+    - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
+    - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
   - 爬虫:
     - JsRPC练习: Spider/JsRpc练习.md
     - 有道翻译爬虫: Spider/有道翻译爬虫.md
