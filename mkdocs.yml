@@ -37,6 +37,9 @@ nav:
     - yield用法及优点: Python/Python学习笔记-yield用法及优点.md
     - 解决Pandas安装缺少_bz2模块: Python/解决Pandas安装缺少_bz2模块.md
     - 利用Cython对python代码进行加密: Python/利用Cython对python代码进行加密.md
+    - context上下文管理器: Python/Golang 学习笔记-context上下文管理器.md
+    - property和setter: Python/Python学习笔记-property和setter.md
+    - 装饰器: Python/Python学习笔记-装饰器.md
     - 其他:
       - Apscheduler使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
       - Zipapp打包可执行文件: Python/other/Python学习笔记-Zipapp打包可执行文件.md
@@ -81,6 +84,16 @@ nav:
 
 
   - Linux:
+    - Nginx:
+      - 简介: Linux/nginx/Nginx学习笔记-Nginx简介.md
+      - 安装Nginx: Linux/nginx/Nginx学习笔记-Centos 7 安装Nginx.md
+      - 配置文件详解: Linux/nginx/Nginx学习笔记-配置文件详解.md
+      - 部署静态页面实践: Linux/nginx/Nginx学习笔记-部署静态页面实践.md
+      - auth_basic认证: Linux/nginx/Nginx学习笔记-auth_basic认证.md
+      - 负载均衡配置: Linux/nginx/Nginx学习笔记-负载均衡配置.md
+      - 图片防盗链: Linux/nginx/Nginx学习笔记-图片防盗链.md
+      - 黑/白名单: Linux/nginx/Nginx学习笔记-黑名单-白名单.md
+      - 前端后端跨域: Linux/nginx/Nginx学习笔记-解决前端后端跨域.md
     - 监控:
       - Loki日志监控: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
       - Uptime-kuma监控: Linux/monitor/Uptime-kuma 监控.md
