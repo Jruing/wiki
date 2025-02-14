@@ -1,18 +1,16 @@
-# Welcome to MkDocs1111
+# 📌 通用版
+- 姓名：Jruing
+- 职业/身份：Python开发工程师
+- 联系方式：📧 Jruing97@gmail.com
+- 个人主页：https://www.github.com/jruing
+- 公众号：佛系内卷写代码
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+# 📝 个人简介
+我是一名Python运维开发工程师，专注于Python Web及运维自动化。拥有5年开发经验。热衷于运维监控及各种工具部署，希望通过学习过程中记录的笔记帮助更多人或解决实际问题。
 
-## Commands
+# 💡 核心技能
+- ✅ （技能1）：Python / Golang / 自动化运维
+- ✅ （技能2）：Python Web开发
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        index_copy.md
-        ...       # Other markdown pages, images and other files.
+# 🎯 个人目标
+希望在全栈开发深耕发展，持续提升自己的能力，搞更多的money
