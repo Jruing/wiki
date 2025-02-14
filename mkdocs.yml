@@ -90,6 +90,7 @@ nav:
     - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
     - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
     - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
+    - Docker在线安装教程: kubernetes/Docker 在线安装教程.md
 
 
   - Linux:
