@@ -1,4 +1,4 @@
-name: 静态wiki
+name: wiki
 
 on:
   push:
