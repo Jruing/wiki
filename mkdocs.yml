@@ -28,9 +28,27 @@ nav:
     - 关于: index.md
   - Python:
     - Schema数据结构: Python/Python学习笔记-Schema数据结构及类型校验.md
+    - 创建虚拟环境及配置: Python/Python 创建虚拟环境及配置.md
+    - Python 调用dll: Python/Python 调用dll.md
+    - 读取指定文件指定行: Python/Python 读取指定文件指定行.md
+    - 链式函数调用: Python/Python 实现链式函数调用.md
+    - 类型提示: Python/Python代码参数类型提示(Type Hints)笔记.md
+    - with上下文管理器: Python/Python上下文管理器with  学习笔记.md
+    - yield用法及优点: Python/Python学习笔记-yield用法及优点.md
+    - 解决Pandas安装缺少_bz2模块: Python/解决Pandas安装缺少_bz2模块.md
+    - 利用Cython对python代码进行加密: Python/利用Cython对python代码进行加密.md
+    - 其他:
+      - Apscheduler使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
+      - Zipapp打包可执行文件: Python/other/Python学习笔记-Zipapp打包可执行文件.md
+    - 爬虫:
+      - JsRPC练习: Python/Spider/JsRpc练习.md
+      - 有道翻译爬虫: Python/Spider/有道翻译爬虫.md
+      - selenium过图片滑块验证: Python/Spider/Python selenium过图片滑块验证.md
+      - 某验五子棋验证码: Python/Spider/某验五子棋验证码.md
+      - 无限VM debugger解决方案: Python/Spider/Python爬虫-无限VM debugger解决方案.md
   - Golang:
     - 基础:
-      - 常量: Golang/Golang学习笔记-变量.md
+      - 常量: Golang/Golang学习笔记-常量.md
       - 变量: Golang/Golang学习笔记-变量.md
       - 判断: Golang/Golang学习笔记-判断.md
       - 循环: Golang/Golang学习笔记-循环.md
@@ -46,9 +64,12 @@ nav:
 
   - 数据库:
     - Postgres:
+      - 安装: database/postgres/postgres安装.md
       - Sequence自增序列: database/postgres/Postgres学习笔记-Sequence自增序列.md
     - Redis:
       - Redis集群: database/postgres/Redis7.XCentos集群搭建.md
+    - MySQL:
+      - Mysql5.7绿色版安装: database/mysql/Mysql5.7 绿色版安装.md
   - 自动化:
     - Selenium: automation/Selenium接管已打开的浏览器.md
   - kuberntes:
@@ -57,11 +78,9 @@ nav:
     - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
     - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
     - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
-  - 爬虫:
-    - JsRPC练习: Spider/JsRpc练习.md
-    - 有道翻译爬虫: Spider/有道翻译爬虫.md
+
+
   - Linux:
-    - systemd: Linux/Systemd 学习笔记.md
     - 监控:
       - Loki日志监控: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
       - Uptime-kuma监控: Linux/monitor/Uptime-kuma 监控.md
@@ -76,6 +95,10 @@ nav:
       - Label标签: Linux/Prometheus/Prometheus笔记-Label标签.md
       - 告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
       - Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
+    - 其他:
+      - systemd: Linux/other/Systemd 学习笔记.md
+      - systemd: Linux/other/Centos7 搭建FTP服务.md
+
   - ServerLess:
     - Fnproject: 
       - 搭建: Linux/serverless/ServerLess学习笔记-Fnproject搭建.md
@@ -84,6 +107,10 @@ nav:
   - 前端:
     - Javascript: 
       - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
+
   - 未分类:
     - UPX: other/UPX使用方法.md
     - 订阅号消息通知: other/基于订阅号开发属于自己的微信消息通知.md
+    - Neo4j实现一个简单的CMDB管理平台: other/Neo4j 实现一个简单的CMDB管理平台.md
+    - Wiki.js安装: other/Wiki.js 安装.md
+    - Frp内网穿透搭建: other/Frp 内网穿透搭建.md
