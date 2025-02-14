@@ -1,4 +1,4 @@
-# 📌 通用版
+# 📌 个人介绍
 - 姓名：Jruing
 - 职业/身份：Python开发工程师
 - 联系方式：📧 Jruing97@gmail.com

@@ -29,7 +29,21 @@ nav:
   - Python:
     - Schema数据结构: Python/Python学习笔记-Schema数据结构及类型校验.md
   - Golang:
-    - 定时任务: Golang/Golang学习笔记-定时任务.md
+    - 基础:
+      - 常量: Golang/Golang学习笔记-变量.md
+      - 变量: Golang/Golang学习笔记-变量.md
+      - 判断: Golang/Golang学习笔记-判断.md
+      - 循环: Golang/Golang学习笔记-循环.md
+      - 数据类型: Golang/Golang学习笔记-数据类型.md
+      - 结构体与匿名结构体: Golang/Golang 学习笔记-结构体与匿名结构体.md
+    - 其他: 
+      - 定时任务: Golang/Golang学习笔记-定时任务.md
+      - 跨平台编译: Golang/Golang 跨平台编译.md
+      - 自定义日志轮转及输出: Golang/Golang学习笔记-自定义日志轮转及输出.md
+      - 处理HTTP请求参数: Golang/Golang学习笔记-处理HTTP请求参数.md
+      - Corba CLI: Golang/Corba CLI 学习笔记.md
+      - sqlc代码生成: Golang/Golang 学习笔记-sqlc 代码生成.md
+
   - 数据库:
     - Postgres:
       - Sequence自增序列: database/postgres/Postgres学习笔记-Sequence自增序列.md
