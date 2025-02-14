@@ -27,44 +27,44 @@ nav:
   - 简介:
     - 关于: index.md
   - Python:
-    - Schema数据结构: Python\Python学习笔记-Schema数据结构及类型校验.md
+    - Schema数据结构: Python/Python学习笔记-Schema数据结构及类型校验.md
   - Golang:
-    - 定时任务: Golang\Golang学习笔记-定时任务.md
+    - 定时任务: Golang/Golang学习笔记-定时任务.md
   - 数据库:
     - Postgres:
-      - Sequence自增序列: database\postgres\Postgres学习笔记-Sequence自增序列.md
+      - Sequence自增序列: database/postgres/Postgres学习笔记-Sequence自增序列.md
     - Redis:
-      - Redis集群: database\postgres\Redis7.XCentos集群搭建.md
+      - Redis集群: database/postgres/Redis7.XCentos集群搭建.md
   - 自动化:
-    - Selenium: automation\Selenium接管已打开的浏览器.md
+    - Selenium: automation/Selenium接管已打开的浏览器.md
   - kuberntes:
-    - Docker-compose安装: kubernetes\Docker-Compose安装.md
+    - Docker-compose安装: kubernetes/Docker-Compose安装.md
   - 爬虫:
-    - JsRPC练习: Spider\JsRpc练习.md
+    - JsRPC练习: Spider/JsRpc练习.md
   - Linux:
-    - systemd: Linux\Systemd 学习笔记.md
+    - systemd: Linux/Systemd 学习笔记.md
     - 监控:
-      - Loki日志监控: Linux\monitor\基于Grafana+Loki+Promatil搭建日志分析平台.md
-      - Uptime-kuma监控: Linux\monitor\Uptime-kuma 监控.md
+      - Loki日志监控: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
+      - Uptime-kuma监控: Linux/monitor/Uptime-kuma 监控.md
     - Prometheus:
-      - 安装: Linux\Prometheus\Prometheus笔记-安装.md
-      - 配置文件字段解析: Linux\Prometheus\Prometheus笔记-配置文件字段解析.md
-      - 基于文件发现: Linux\Prometheus\Prometheus笔记-file_sd_config.md
-      - 安装Node_exporter: Linux\Prometheus\Prometheus笔记-安装Node_exporter.md
-      - 安装blackbox_exporter: Linux\Prometheus\Prometheus笔记-安装blackbox_exporter.md
-      - 监控docker容器: Linux\Prometheus\Prometheus笔记-监控docker容器.md
-      - 设置Basic_auth登录校验: Linux\Prometheus\Prometheus笔记-设置Basic_auth登录校验.md
-      - Label标签: Linux\Prometheus\Prometheus笔记-Label标签.md
-      - 告警规则配置: Linux\Prometheus\Prometheus笔记-告警规则配置.md
-      - Grafana可视化: Linux\Prometheus\Prometheus笔记-Grafana可视化.md
+      - 安装: Linux/Prometheus/Prometheus笔记-安装.md
+      - 配置文件字段解析: Linux/Prometheus/Prometheus笔记-配置文件字段解析.md
+      - 基于文件发现: Linux/Prometheus/Prometheus笔记-file_sd_config.md
+      - 安装Node_exporter: Linux/Prometheus/Prometheus笔记-安装Node_exporter.md
+      - 安装blackbox_exporter: Linux/Prometheus/Prometheus笔记-安装blackbox_exporter.md
+      - 监控docker容器: Linux/Prometheus/Prometheus笔记-监控docker容器.md
+      - 设置Basic_auth登录校验: Linux/Prometheus/Prometheus笔记-设置Basic_auth登录校验.md
+      - Label标签: Linux/Prometheus/Prometheus笔记-Label标签.md
+      - 告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
+      - Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
   - ServerLess:
     - Fnproject: 
-      - 搭建: Linux\serverless\ServerLess学习笔记-Fnproject搭建.md
-      - 常用命令: Linux\serverless\ServerLess学习笔记-Fnproject常用命令.md
-      - 示例: Linux\serverless\ServerLess学习笔记-搭建FN示例.md
+      - 搭建: Linux/serverless/ServerLess学习笔记-Fnproject搭建.md
+      - 常用命令: Linux/serverless/ServerLess学习笔记-Fnproject常用命令.md
+      - 示例: Linux/serverless/ServerLess学习笔记-搭建FN示例.md
   - 前端:
     - Javascript: 
-      - js拷贝复制: front\Javascript学习笔记-js实现拷贝复制功能.md
+      - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
   - 未分类:
-    - UPX: other\UPX使用方法.md
-    - 订阅号消息通知: other\基于订阅号开发属于自己的微信消息通知.md
+    - UPX: other/UPX使用方法.md
+    - 订阅号消息通知: other/基于订阅号开发属于自己的微信消息通知.md
