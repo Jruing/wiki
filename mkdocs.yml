@@ -35,20 +35,24 @@ nav:
   - 简介:
     - 关于: index.md
   - Python:
-    - Schema数据结构: Python/Python学习笔记-Schema数据结构及类型校验.md
-    - 创建虚拟环境及配置: Python/Python 创建虚拟环境及配置.md
-    - Python 调用dll: Python/Python 调用dll.md
-    - 读取指定文件指定行: Python/Python 读取指定文件指定行.md
-    - 链式函数调用: Python/Python 实现链式函数调用.md
-    - 类型提示: Python/Python代码参数类型提示(Type Hints)笔记.md
-    - with上下文管理器: Python/Python上下文管理器with  学习笔记.md
-    - yield用法及优点: Python/Python学习笔记-yield用法及优点.md
-    - 解决Pandas安装缺少_bz2模块: Python/解决Pandas安装缺少_bz2模块.md
-    - 利用Cython对python代码进行加密: Python/利用Cython对python代码进行加密.md
-    - context上下文管理器: Python/Golang 学习笔记-context上下文管理器.md
-    - property和setter: Python/Python学习笔记-property和setter.md
-    - 装饰器: Python/Python学习笔记-装饰器.md
-    - __missing用法__: Python/Python学习笔记-__missing用法__.md
+    - 基础:
+      - 创建虚拟环境及配置: Python/Python 创建虚拟环境及配置.md
+      - 读取指定文件指定行: Python/Python 读取指定文件指定行.md
+
+    - 进阶:
+      - Schema数据结构: Python/Python学习笔记-Schema数据结构及类型校验.md
+      - Python 调用dll: Python/Python 调用dll.md
+      - 链式函数调用: Python/Python 实现链式函数调用.md
+      - 类型提示: Python/Python代码参数类型提示(Type Hints)笔记.md
+      - with上下文管理器: Python/Python上下文管理器with  学习笔记.md
+      - yield用法及优点: Python/Python学习笔记-yield用法及优点.md
+      - python代码进行加密: Python/利用Cython对python代码进行加密.md
+      - context上下文管理器: Python/Golang 学习笔记-context上下文管理器.md
+      - property和setter: Python/Python学习笔记-property和setter.md
+      - 装饰器: Python/Python学习笔记-装饰器.md
+      - 魔术方法-__missing__: Python/Python学习笔记-__missing__用法.md
+    - 异常解决访问:
+      - 解决Pandas安装缺少_bz2模块: Python/解决Pandas安装缺少_bz2模块.md
     - 其他:
       - Apscheduler使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
       - Zipapp打包可执行文件: Python/other/Python学习笔记-Zipapp打包可执行文件.md
@@ -85,14 +89,14 @@ nav:
   - 自动化:
     - Selenium: automation/Selenium接管已打开的浏览器.md
   - kuberntes:
-    - Docker-compose安装: kubernetes/Docker-Compose安装.md
-    - 安装Nginx及实践应用: kubernetes/Docker 安装Nginx及实践应用.md
-    - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
-    - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
-    - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
-    - Docker在线安装教程: kubernetes/Docker 在线安装教程.md
-    - Docker常用小技巧: kubernetes/Docker 常用技巧.md
-
+    - Docker:
+      - Docker在线安装教程: kubernetes/Docker 在线安装教程.md
+      - Docker-compose安装: kubernetes/Docker-Compose安装.md
+      - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
+      - Docker常用小技巧: kubernetes/Docker 常用技巧.md
+      - 安装Nginx及实践应用: kubernetes/Docker 安装Nginx及实践应用.md
+      - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
+      - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
 
   - Linux:
     - Nginx:
@@ -120,8 +124,8 @@ nav:
       - 告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
       - Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
     - 其他:
-      - systemd: Linux/other/Systemd 学习笔记.md
-      - systemd: Linux/other/Centos7 搭建FTP服务.md
+      - Systemd: Linux/other/Systemd 学习笔记.md
+      - FTP服务: Linux/other/Centos7 搭建FTP服务.md
 
   - ServerLess:
     - Fnproject: 
