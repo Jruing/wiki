@@ -70,6 +70,10 @@ nav:
       - 循环: Golang/Golang学习笔记-循环.md
       - 数据类型: Golang/Golang学习笔记-数据类型.md
       - 结构体与匿名结构体: Golang/Golang 学习笔记-结构体与匿名结构体.md
+    - 进阶:
+      - Viper配置解析: Golang/Golang 学习笔记-Viper.md
+      - JWT使用: Golang/Golang学习笔记-jwt.md
+      - Casbin权限管理: Golang/Golang学习笔记-Casbin学习笔记.md
     - 其他: 
       - 定时任务: Golang/Golang学习笔记-定时任务.md
       - 跨平台编译: Golang/Golang 跨平台编译.md
@@ -92,11 +96,12 @@ nav:
     - Docker:
       - Docker在线安装教程: kubernetes/Docker 在线安装教程.md
       - Docker-compose安装: kubernetes/Docker-Compose安装.md
+      - DockerSwarm: kubernetes/Docker Swarm 学习笔记.md
       - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
       - Docker常用小技巧: kubernetes/Docker 常用技巧.md
       - 安装Nginx及实践应用: kubernetes/Docker 安装Nginx及实践应用.md
       - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
-      - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
+      - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.
 
   - Linux:
     - Nginx:
@@ -138,6 +143,8 @@ nav:
   - AI:
     - 提示词:
       - 嘴替: AI/prompt/嘴替.md
+    - AI应用
+      - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
   - 未分类:
     - UPX: other/UPX使用方法.md
     - 订阅号消息通知: other/基于订阅号开发属于自己的微信消息通知.md
