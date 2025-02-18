@@ -144,7 +144,7 @@ nav:
   - AI:
     - 提示词:
       - 嘴替: AI/prompt/嘴替.md
-    - AI应用
+    - AI应用:
       - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
   - 未分类:
     - UPX: other/UPX使用方法.md
