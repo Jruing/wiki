@@ -91,6 +91,7 @@ nav:
     - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
     - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
     - Docker在线安装教程: kubernetes/Docker 在线安装教程.md
+    - Docker常用小技巧: kubernetes/Docker 常用技巧.md
 
 
   - Linux:
