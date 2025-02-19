@@ -50,6 +50,7 @@ nav:
       - context上下文管理器: Python/Golang 学习笔记-context上下文管理器.md
       - property和setter: Python/Python学习笔记-property和setter.md
       - 装饰器: Python/Python学习笔记-装饰器.md
+      - 偏函数: Python/python学习笔记-偏函数.md
       - 魔术方法-__missing__: Python/Python学习笔记-__missing__用法.md
     - 异常解决访问:
       - 解决Pandas安装缺少_bz2模块: Python/解决Pandas安装缺少_bz2模块.md
