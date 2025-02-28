@@ -173,6 +173,7 @@ class UserInfoAgent:
 # 调用
 if __name__ == '__main__':
     userinfo_agent = UserInfoAgent()
+    # 查询用户Eve的所有信息,如果要查询表数据总数，需要自定义新的工具函数用于获取表数据总数
     userinfo_agent.chat("查询用户Eve的所有信息")
 ```
 ## 效果
