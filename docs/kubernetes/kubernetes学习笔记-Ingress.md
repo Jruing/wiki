@@ -42,6 +42,7 @@ spec:
 ```
 # 对外提供服务使用Ingress和NodePort的区别？
 > 在 Kubernetes 中，Service 的 NodePort 类型确实可以将服务暴露到集群外部，但使用 Ingress 有更多的优势和适用场景
+
 1. 更灵活的路由规则
 - NodePort 的限制：
   - NodePort 只能通过特定的端口暴露服务，无法根据请求的路径或域名进行路由。
