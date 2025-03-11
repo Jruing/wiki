@@ -43,7 +43,7 @@ spec:
 # 对外提供服务使用Ingress和NodePort的区别？
 > 在 Kubernetes 中，Service 的 NodePort 类型确实可以将服务暴露到集群外部，但使用 Ingress 有更多的优势和适用场景
 
-1. 更灵活的路由规则
+## 更灵活的路由规则
 - NodePort 的限制：
   - NodePort 只能通过特定的端口暴露服务，无法根据请求的路径或域名进行路由。
   - 如果有多个服务，每个服务都需要占用一个不同的端口，管理起来非常麻烦。
@@ -55,7 +55,7 @@ spec:
   - 这样，多个服务可以共享同一个端口（通常是 80 或 443）。
 
 ---
-2. 支持 HTTPS
+## 支持 HTTPS
 - NodePort 的限制：
   - NodePort 本身不支持 HTTPS，如果需要 HTTPS，需要在应用层或外部负载均衡器上配置。
 - Ingress 的优势：
@@ -63,7 +63,7 @@ spec:
   - 大多数 Ingress Controller（如 Nginx、Traefik）都支持自动管理 TLS 证书（例如通过 Let's Encrypt）。
 
 ---
-3. 集中管理外部访问
+## 集中管理外部访问
 - NodePort 的限制：
   - 每个 NodePort 服务都需要单独管理，端口冲突和端口范围限制可能导致管理复杂度增加。
 - Ingress 的优势：
@@ -71,7 +71,7 @@ spec:
   - 通过一个 Ingress 资源可以管理多个服务的路由规则，简化了配置和维护。
 
 ---
-4. 负载均衡
+## 负载均衡
 - NodePort 的限制：
   - NodePort 本身不提供高级负载均衡功能，流量会直接转发到某个节点的端口。
   - 如果需要负载均衡，通常需要依赖外部的负载均衡器（如云服务商的 LB）。
@@ -80,14 +80,14 @@ spec:
   - 支持更复杂的流量管理，如蓝绿部署、金丝雀发布等。
 
 ---
-5. 减少端口暴露
+## 减少端口暴露
 - NodePort 的限制：
   - NodePort 需要在每个节点上开放一个端口（默认范围是 30000-32767），这会增加安全风险。
 - Ingress 的优势：
   - Ingress 只需要暴露 80（HTTP）和 443（HTTPS）端口，减少了端口暴露的数量，降低了安全风险。
 
 ---
-6. 支持高级功能
+## 支持高级功能
 - Ingress 的优势：
   - Ingress 支持许多高级功能，例如：
     - URL 重写
@@ -98,7 +98,7 @@ spec:
   - 这些功能在 NodePort 中是无法实现的。
 
 ---
-7. 与云服务集成
+## 与云服务集成
 - Ingress 的优势：
   - 在云环境中，Ingress 通常与云服务商的负载均衡器（如 AWS ALB、GCP Load Balancer）集成，提供更强大的功能。
   - 例如，AWS ALB Ingress Controller 可以自动创建和管理 AWS 应用负载均衡器。
