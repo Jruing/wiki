@@ -152,7 +152,7 @@ nav:
       - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
     - React:
       - 基础:
-        - 安装：front/React-安装.md
+        - 安装：front/React/React-安装.md
         - JSX语法：front/React/React-JSX.md
         - 数据展示：front/React/React-数据展示.md
         - 条件判断：front/React/React-条件判断.md
