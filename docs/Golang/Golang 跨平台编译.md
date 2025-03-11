@@ -9,7 +9,7 @@ cgo 是在 Android 和 iOS 上运行 Go 程序的关键,它允许GO程序与C语
 
 ```
 go env -w CGO_ENABLED=0 # 禁用CGO
-go env -w GOOS=windwos # 目标平台是Windows
+go env -w GOOS=windows # 目标平台是Windows
 go env -w GOARCH=amd64 # 目标处理器架构是amd64
 ```
 
