@@ -147,6 +147,7 @@ nav:
     - 其他:
       - Systemd: Linux/other/Systemd 学习笔记.md
       - FTP服务: Linux/other/Centos7 搭建FTP服务.md
+      - Linux免密登录: Linux/other/Linux免密登录.md
 
   - ServerLess:
     - Fnproject: 
