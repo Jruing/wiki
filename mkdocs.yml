@@ -105,6 +105,7 @@ nav:
       - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
     - kubernetes:
       - 安装: kubernetes/kubernetes学习笔记-搭建K3s集群.md
+      - helm学习笔记: kubernetes/helm学习笔记.md
   - Linux:
     - Nginx:
       - 简介: Linux/nginx/Nginx学习笔记-Nginx简介.md
