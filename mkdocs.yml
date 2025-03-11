@@ -124,6 +124,12 @@ nav:
       - 图片防盗链: Linux/nginx/Nginx学习笔记-图片防盗链.md
       - 黑/白名单: Linux/nginx/Nginx学习笔记-黑名单-白名单.md
       - 前端后端跨域: Linux/nginx/Nginx学习笔记-解决前端后端跨域.md
+    - caddy:
+      - 简介: Linux/caddy/caddy简介.md
+      - 安装: Linux/caddy/caddy安装.md
+      - 静态文件目录: Linux/caddy/caddy静态文件.md
+      - 静态站点: Linux/caddy/caddy实战-静态站点.md
+      - BasicAuth: Linux/caddy/caddy实战-basicauth.md
     - 监控:
       - Loki日志监控: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
       - Uptime-kuma监控: Linux/monitor/Uptime-kuma 监控.md
