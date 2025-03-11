@@ -104,7 +104,14 @@ nav:
       - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
       - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
     - kubernetes:
-      - 安装: kubernetes/kubernetes学习笔记-搭建K3s集群.md
+      - 安装: kubernetes/kubernetes学习笔记-安装.md
+      - Pod: kubernetes/kubernetes学习笔记-Pod.md
+      - NameSpace: kubernetes/kubernetes学习笔记-namespace.md
+      - ReplicaSet: kubernetes/kubernetes学习笔记-ReplicaSet.md
+      - Depolyment: kubernetes/kubernetes学习笔记-Depolyment.md
+      - Service: kubernetes/kubernetes学习笔记-Service.md
+      - ConfigMap: kubernetes/kubernetes学习笔记-ConfigMap.md
+      - Ingress: kubernetes/kubernetes学习笔记-Ingress.md
       - helm学习笔记: kubernetes/helm学习笔记.md
   - Linux:
     - Nginx:
