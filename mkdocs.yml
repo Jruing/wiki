@@ -152,14 +152,14 @@ nav:
       - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
     - React:
       - 基础:
-        - 安装：front/React/React-安装.md
-        - JSX语法：front/React/React-JSX.md
-        - 数据展示：front/React/React-数据展示.md
-        - 条件判断：front/React/React-条件判断.md
-        - 列表渲染：front/React/React-列表渲染.md
-        - 响应事件：front/React/React-响应事件.md
-        - 更新页面数据：front/React/React-更新页面数据.md
-        - Props传递给组件：front/React/React-Props传递给组件.md
+        - 安装: front/React/React-安装.md
+        - JSX语法: front/React/React-JSX.md
+        - 数据展示: front/React/React-数据展示.md
+        - 条件判断: front/React/React-条件判断.md
+        - 列表渲染: front/React/React-列表渲染.md
+        - 响应事件: front/React/React-响应事件.md
+        - 更新页面数据: front/React/React-更新页面数据.md
+        - Props传递给组件: front/React/React-Props传递给组件.md
     - Vue3:
       - 进阶:
         - 基础环境搭建: front/Vue/Vue3+Vite项目基础环境搭建.md
