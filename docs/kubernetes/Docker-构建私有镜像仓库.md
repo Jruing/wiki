@@ -53,7 +53,8 @@ volumes:
 ```
 docker-compose up -d
 ```
-
+# 页面
+> http://192.168.1.233:8080
 # 测试
 
 ```
@@ -67,3 +68,6 @@ docker push 192.168.1.233:8080/nginx:1.0
 ```
 docker pull 192.168.1.233:8080/nginx:1.0
 ```
+## 预览页面
+
+![image-20250312171220502](https://jruing-blogs.oss-cn-beijing.aliyuncs.com/blogs/image-20250312171220502.png)
