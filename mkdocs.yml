@@ -177,6 +177,7 @@ nav:
       - 嘴替: AI/prompt/嘴替.md
     - AI应用:
       - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
+      - MCP学习笔记: AI/MCP学习笔记.md
       - LlamaIndex-Agent查询数据库: AI/prompt/LlamaIndex-Agent关联数据库.md
       - LlamaIndex-Agent自然语言查询数据库: AI/prompt/Llamaindex-Agent自然语言查询数据库.md
   - 未分类:
