@@ -2,6 +2,7 @@
 ```
 pip install llama-index
 pip install llama-index-embeddings-text-embeddings-inference
+pip install sqlalchemy
 ```
 
 ## 创建数据库
