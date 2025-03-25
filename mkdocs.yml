@@ -36,9 +36,8 @@ nav:
     - 关于: index.md
   - Python:
     - 基础:
-      - 创建虚拟环境及配置: Python/Python 创建虚拟环境及配置.md
-      - 读取指定文件指定行: Python/Python 读取指定文件指定行.md
-
+      - 创建虚拟环境及配置: Python/advanced/Python 创建虚拟环境及配置.md
+      - 读取指定文件指定行: Python/advanced/Python 读取指定文件指定行.md
     - 进阶:
       - Schema数据结构: Python/advanced/Python学习笔记-Schema数据结构及类型校验.md
       - Python 调用dll: Python/advanced/Python 调用dll.md
