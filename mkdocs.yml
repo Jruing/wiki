@@ -24,7 +24,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.instant
-    - navigation.expand
+    - navigation.path # 导航路径
     - navigation.top # 返回到顶部
     - content.code.copy #代码复制
     - search.suggest # 搜索建议
@@ -40,21 +40,20 @@ nav:
       - 读取指定文件指定行: Python/Python 读取指定文件指定行.md
 
     - 进阶:
-      - Schema数据结构: Python/Python学习笔记-Schema数据结构及类型校验.md
-      - Python 调用dll: Python/Python 调用dll.md
-      - 链式函数调用: Python/Python 实现链式函数调用.md
-      - 类型提示: Python/Python代码参数类型提示(Type Hints)笔记.md
-      - with上下文管理器: Python/Python上下文管理器with  学习笔记.md
-      - yield用法及优点: Python/Python学习笔记-yield用法及优点.md
-      - python代码进行加密: Python/利用Cython对python代码进行加密.md
-      - context上下文管理器: Python/Golang 学习笔记-context上下文管理器.md
-      - property和setter: Python/Python学习笔记-property和setter.md
-      - 装饰器: Python/Python学习笔记-装饰器.md
-      - 偏函数: Python/python学习笔记-偏函数.md
-      - grpc: Python/Python学习笔记-grpc.md
-      - 魔术方法-__missing__: Python/Python学习笔记-__missing__用法.md
+      - Schema数据结构: Python/advanced/Python学习笔记-Schema数据结构及类型校验.md
+      - Python 调用dll: Python/advanced/Python 调用dll.md
+      - 链式函数调用: Python/advanced/Python 实现链式函数调用.md
+      - 类型提示: Python/advanced/Python代码参数类型提示(Type Hints)笔记.md
+      - with上下文管理器: Python/advanced/Python上下文管理器with  学习笔记.md
+      - yield用法及优点: Python/advanced/Python学习笔记-yield用法及优点.md
+      - python代码进行加密: Python/advanced/利用Cython对python代码进行加密.md
+      - property和setter: Python/advanced/Python学习笔记-property和setter.md
+      - 装饰器: Python/advanced/Python学习笔记-装饰器.md
+      - 偏函数: Python/advanced/python学习笔记-偏函数.md
+      - grpc: Python/advanced/Python学习笔记-grpc.md
+      - 魔术方法-__missing__: Python/advanced/Python学习笔记-__missing__用法.md
     - 异常解决访问:
-      - 解决Pandas安装缺少_bz2模块: Python/解决Pandas安装缺少_bz2模块.md
+      - 解决Pandas安装缺少_bz2模块: Python/other/解决Pandas安装缺少_bz2模块.md
     - 其他:
       - Apscheduler使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
       - Zipapp打包可执行文件: Python/other/Python学习笔记-Zipapp打包可执行文件.md
