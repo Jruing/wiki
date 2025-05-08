@@ -18,13 +18,13 @@
 
 ## 名词概念
 
-- 工具(tool)：
-- 资源(resource)：
-- 提示(prompt)：
+- 工具(tool)：使服务器能够向客户端暴露可执行的功能。通过工具，LLMs可以与外部系统交互、执行计算并在现实世界中采取行动。
+- 资源(resource)：是MCP中用来对外暴露数据的核心机制，你可以把它想象成一个只读的数据库接口或者文件系统，比如日志文件
+- 提示(prompt)：提供预定义的交互模式或者推理指引。
 
 ## 准备工作
 
-- [CherryStudio]: https://www.cherry-ai.com/
+- CherryStudio
 
 - Python
 
