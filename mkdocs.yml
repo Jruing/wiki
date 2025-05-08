@@ -180,6 +180,7 @@ nav:
       - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
       - OneAPI搭建: AI/Docker安装OneAPI.md
       - MCP学习笔记: AI/MCP学习笔记.md
+      - MCP从0到1搭建: AI/MCP从0到1.md
       - LlamaIndex-Agent查询数据库: AI/LlamaIndex-Agent关联数据库.md
       - LlamaIndex-Agent自然语言查询数据库: AI/Llamaindex-Agent自然语言查询数据库.md
   - 未分类:
