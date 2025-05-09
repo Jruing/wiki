@@ -176,6 +176,9 @@ nav:
   - AI:
     - 提示词:
       - 嘴替: AI/prompt/嘴替.md
+      - 猫娘: AI/prompt/猫娘.md
+      - 叛逆: AI/prompt/叛逆.md
+      - 文字冒险游戏: AI/prompt/文字冒险游戏.md
     - AI应用:
       - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
       - OneAPI搭建: AI/Docker安装OneAPI.md
