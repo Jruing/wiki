@@ -159,6 +159,7 @@ nav:
   - 前端:
     - Javascript: 
       - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
+      - js控制台hook请求：front/js控制台Hook.md
     - React:
       - 基础:
         - 安装: front/React/React-安装.md
