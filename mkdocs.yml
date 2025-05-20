@@ -177,12 +177,7 @@ nav:
         - 基础环境搭建: front/Vue/Vue3+Vite项目基础环境搭建.md
         - Router路由管理: front/Vue/Vue3 Router路由.md
   - AI:
-    - 提示词:
-      - 嘴替: AI/prompt/嘴替.md
-      - 猫娘: AI/prompt/猫娘.md
-      - 叛逆: AI/prompt/叛逆.md
-      - 文字冒险游戏: AI/prompt/文字冒险游戏.md
-      - 可视化网页: AI/prompt/可视化网页.md
+    - 提示词: AI/prompt/提示词.md
     - AI应用:
       - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
       - OneAPI搭建: AI/Docker安装OneAPI.md
