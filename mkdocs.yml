@@ -125,6 +125,7 @@ nav:
       - 前端后端跨域: Linux/nginx/Nginx学习笔记-解决前端后端跨域.md
     - caddy:
       - 简介: Linux/caddy/caddy简介.md
+      - 手册: Linux/caddy/caddy手册.md
       - 安装: Linux/caddy/caddy安装.md
       - 静态文件目录: Linux/caddy/caddy静态文件.md
       - 静态站点: Linux/caddy/caddy实战-静态站点.md
