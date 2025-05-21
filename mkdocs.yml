@@ -153,6 +153,7 @@ nav:
       - Linux tmux使用手册: Linux/other/Linux tmux 使用手册.md
       - Linux screen使用手册: Linux/other/Linux screen快速参考手册.md
       - SSH隧道代理使用手册: Linux/other/SSH 隧道代理使用手册.md
+      - iptables使用手册: Linux/other/iptables.md
 
   - ServerLess:
     - Fnproject: 
@@ -162,7 +163,7 @@ nav:
   - 前端:
     - Javascript: 
       - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
-      - js控制台hook请求：front/js控制台Hook.md
+      - js控制台hook请求: front/js控制台Hook.md
     - React:
       - 基础:
         - 安装: front/React/React-安装.md
