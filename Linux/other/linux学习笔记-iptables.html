@@ -1,0 +1,2884 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/Linux/other/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-iptables.html">
+      
+      
+        <link rel="prev" href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-grep.html">
+      
+      
+        <link rel="next" href="Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-jq.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>linux学习笔记-iptables - Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iptables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wiki" class="md-header__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              linux学习笔记-iptables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jruing/wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jruing/wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../index.html" class="md-tabs__link">
+          
+  
+  
+  简介
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../AI/AIAgent/AnythingLLM%2BOllama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93.html" class="md-tabs__link">
+          
+  
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-tabs__link">
+          
+  
+  
+  自动化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../database/mysql/Mysql57%E7%BB%BF%E8%89%B2%E7%89%88%E5%AE%89%E8%A3%85.html" class="md-tabs__link">
+          
+  
+  
+  数据库
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../front/fetch%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-tabs__link">
+          
+  
+  
+  前端
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Golang/advanced/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sqlc%20%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90.html" class="md-tabs__link">
+          
+  
+  
+  Golang
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/docker/Docker%20Swarm%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-tabs__link">
+          
+  
+  
+  云原生
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../caddy/caddy%E5%AE%89%E8%A3%85.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other/Frp%20%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%90%AD%E5%BB%BA.html" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Python/advanced/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-grpc.html" class="md-tabs__link">
+          
+  
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wiki" class="md-nav__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jruing/wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jruing/wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../AI/AIAgent/AnythingLLM%2BOllama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    AI
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    自动化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../database/mysql/Mysql57%E7%BB%BF%E8%89%B2%E7%89%88%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    数据库
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../front/fetch%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    前端
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Golang/advanced/Golang%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sqlc%20%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Golang
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../kubernetes/docker/Docker%20Swarm%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    云原生
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../caddy/caddy%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    caddy
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../monitor/Uptime-kuma%20%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    monitor
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../nginx/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-auth_basic%E8%AE%A4%E8%AF%81.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    nginx
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    other
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            other
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-awk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-awk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-cgroup%28%E4%B8%80%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux学习笔记-cgroup(一)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-cgroup%28%E4%BA%8C%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-cgroup(二)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-grep.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-grep
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-iptables
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-iptables.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-iptables
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 什么是 iptables？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. iptables 的结构与原理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 基本命令语法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 常用参数说明
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-chaintable" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 链（Chain）与表（Table）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 链（Chain）与表（Table）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 常见操作：添加、删除、查看规则
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 常见操作：添加、删除、查看规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加规则（允许 SSH）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除规则（按编号删除）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      清空规则：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置默认策略（禁止所有入站）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 保存与恢复规则
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 保存与恢复规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centos-rhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS / RHEL：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu / Debian：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 常用防火墙策略示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 常用防火墙策略示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      最小化防火墙策略（仅允许本地环回 + 已建立连接）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 端口开放与限制访问
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 端口开放与限制访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      允许 HTTP 和 HTTPS：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      拒绝某个端口：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. IP 限制与黑白名单
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. IP 限制与黑白名单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      屏蔽单个 IP：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      允许特定 IP 访问 SSH：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      白名单模式（只允许白名单 IP）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 状态匹配（连接追踪）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 日志记录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. NAT 配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. NAT 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snat" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNAT（源地址转换）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNAT（目标地址转换）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 高级用法：自定义链
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. 实战案例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. 实战案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 案例一：Web 服务器防火墙
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 案例二：NAT 路由器配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. 常见问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. 常见问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1：为什么我设置了规则但无法访问服务？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2：如何查看规则编号？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-icmpping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3：如何阻止 ICMP（Ping）请求？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 推荐资源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-jq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux学习笔记-jq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-rsync%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-rsync数据同步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-screen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-screen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sed%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-sed手册
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-SSH%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-SSH隧道代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Systemd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-Systemd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-tmux.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-tmux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-免密登录
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%90%AD%E5%BB%BAFTP%E6%9C%8D%E5%8A%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-搭建FTP服务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E8%84%9A%E6%9C%AC.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    linux学习笔记-服务器基础信息查询脚本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ubuntu%2022.04%20%E4%B8%8A%E5%AE%89%E8%A3%85%20Python%203.12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ubuntu 22.04 上安装 Python 3.12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    令牌桶限流
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../Prometheus/Prometheus%E7%AC%94%E8%AE%B0-file_sd_config.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Prometheus
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Fnproject%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    serverless
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../other/Frp%20%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    其他
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Python/advanced/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-grpc.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 什么是 iptables？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. iptables 的结构与原理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 基本命令语法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 常用参数说明
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-chaintable" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 链（Chain）与表（Table）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 链（Chain）与表（Table）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 常见操作：添加、删除、查看规则
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 常见操作：添加、删除、查看规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加规则（允许 SSH）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除规则（按编号删除）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      清空规则：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置默认策略（禁止所有入站）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 保存与恢复规则
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 保存与恢复规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centos-rhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      CentOS / RHEL：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu / Debian：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 常用防火墙策略示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 常用防火墙策略示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      最小化防火墙策略（仅允许本地环回 + 已建立连接）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 端口开放与限制访问
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 端口开放与限制访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      允许 HTTP 和 HTTPS：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      拒绝某个端口：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. IP 限制与黑白名单
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. IP 限制与黑白名单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      屏蔽单个 IP：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      允许特定 IP 访问 SSH：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      白名单模式（只允许白名单 IP）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 状态匹配（连接追踪）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 日志记录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. NAT 配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. NAT 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snat" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNAT（源地址转换）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNAT（目标地址转换）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 高级用法：自定义链
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. 实战案例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. 实战案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 案例一：Web 服务器防火墙
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 案例二：NAT 路由器配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. 常见问题解答
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. 常见问题解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1：为什么我设置了规则但无法访问服务？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2：如何查看规则编号？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-icmpping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3：如何阻止 ICMP（Ping）请求？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 推荐资源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/jruing/wiki/edit/master/docs/Linux/other/linux学习笔记-iptables.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<hr />
+<h1 id="iptables">📘 iptables 学习手册（完整版）</h1>
+<h2 id="_1">目录</h2>
+<ol>
+<li><a href="#1-什么是-iptables">什么是 iptables？</a></li>
+<li><a href="#2-iptables-的结构与原理">iptables 的结构与原理</a></li>
+<li><a href="#3-基本命令语法">基本命令语法</a></li>
+<li><a href="#4-常用参数说明">常用参数说明</a></li>
+<li><a href="#5-链chain-与表table">链（Chain）与表（Table）</a></li>
+<li><a href="#6-常见操作添加删除查看规则">常见操作：添加、删除、查看规则</a></li>
+<li><a href="#7-保存与恢复规则">保存与恢复规则</a></li>
+<li><a href="#8-常用防火墙策略示例">常用防火墙策略示例</a></li>
+<li><a href="#9-端口开放与限制访问">端口开放与限制访问</a></li>
+<li><a href="#10-ip-限制与黑白名单">IP 限制与黑白名单</a></li>
+<li><a href="#11-状态匹配连接追踪">状态匹配（连接追踪）</a></li>
+<li><a href="#12-日志记录">日志记录</a></li>
+<li><a href="#13-nat-配置">NAT 配置</a></li>
+<li><a href="#14-高级用法自定义链">高级用法：自定义链</a></li>
+<li><a href="#15-实战案例">实战案例</a></li>
+<li><a href="#16-常见问题解答">常见问题解答</a></li>
+</ol>
+<hr />
+<h2 id="1-iptables">1. 什么是 iptables？</h2>
+<p><code>iptables</code> 是 Linux 内核中用于管理网络数据包过滤的工具，它允许你定义规则来控制进出系统的网络流量。它是 Linux 防火墙的核心组件之一。</p>
+<hr />
+<h2 id="2-iptables">2. iptables 的结构与原理</h2>
+<p>iptables 通过 <strong>表（tables）</strong> 和 <strong>链（chains）</strong> 来组织规则：</p>
+<ul>
+<li><strong>表（Tables）</strong>：不同的表处理不同类型的任务</li>
+<li><code>filter</code>：默认表，用于过滤流量（如放行/拒绝）</li>
+<li><code>nat</code>：用于地址转换（如 SNAT/DNAT）</li>
+<li><code>mangle</code>：修改数据包头部信息</li>
+<li><code>raw</code>：用于配置连接追踪</li>
+<li><strong>链（Chains）</strong>：每个表中有多个链，对应不同阶段的数据包处理</li>
+<li><code>INPUT</code>：进入本机的数据包</li>
+<li><code>OUTPUT</code>：本机发出的数据包</li>
+<li><code>FORWARD</code>：转发到其他主机的数据包</li>
+<li><code>PREROUTING</code>：路由前修改目标地址（NAT 使用）</li>
+<li><code>POSTROUTING</code>：路由后修改源地址（NAT 使用）</li>
+</ul>
+<hr />
+<h2 id="3">3. 基本命令语法</h2>
+<pre><code class="language-bash">iptables [-t 表名] 命令 链名 [规则匹配条件] [-j 动作]
+</code></pre>
+<hr />
+<h2 id="4">4. 常用参数说明</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-A</code></td>
+<td>Append，在链末尾追加一条规则</td>
+</tr>
+<tr>
+<td><code>-I</code></td>
+<td>Insert，在指定位置插入规则</td>
+</tr>
+<tr>
+<td><code>-D</code></td>
+<td>Delete，删除某条规则</td>
+</tr>
+<tr>
+<td><code>-L</code></td>
+<td>List，列出规则</td>
+</tr>
+<tr>
+<td><code>-F</code></td>
+<td>Flush，清空所有规则</td>
+</tr>
+<tr>
+<td><code>-Z</code></td>
+<td>Zero，清零计数器</td>
+</tr>
+<tr>
+<td><code>-P</code></td>
+<td>Policy，设置链的默认策略</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td><code>-n</code></td>
+<td>不进行 DNS 解析，显示 IP 和端口号</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-chaintable">5. 链（Chain）与表（Table）</h2>
+<h3 id="_2">示例：</h3>
+<pre><code class="language-bash"># 查看 filter 表中的 INPUT 链规则
+iptables -t filter -L INPUT -n -v
+
+# 查看 nat 表的所有链规则
+iptables -t nat -L -n -v
+</code></pre>
+<hr />
+<h2 id="6">6. 常见操作：添加、删除、查看规则</h2>
+<h3 id="ssh">添加规则（允许 SSH）：</h3>
+<pre><code class="language-bash">iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+</code></pre>
+<h3 id="_3">删除规则（按编号删除）：</h3>
+<pre><code class="language-bash">iptables -L INPUT --line-numbers  # 查看规则编号
+iptables -D INPUT 3               # 删除第 3 条规则
+</code></pre>
+<h3 id="_4">清空规则：</h3>
+<pre><code class="language-bash">iptables -F
+</code></pre>
+<h3 id="_5">设置默认策略（禁止所有入站）：</h3>
+<pre><code class="language-bash">iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+</code></pre>
+<hr />
+<h2 id="7">7. 保存与恢复规则</h2>
+<h3 id="centos-rhel">CentOS / RHEL：</h3>
+<pre><code class="language-bash">service iptables save
+</code></pre>
+<p>或手动保存：</p>
+<pre><code class="language-bash">iptables-save &gt; /etc/iptables/rules.v4
+</code></pre>
+<p>恢复规则：</p>
+<pre><code class="language-bash">iptables-restore &lt; /etc/iptables/rules.v4
+</code></pre>
+<h3 id="ubuntu-debian">Ubuntu / Debian：</h3>
+<p>安装 <code>iptables-persistent</code> 包：</p>
+<pre><code class="language-bash">apt install iptables-persistent
+</code></pre>
+<p>保存规则：</p>
+<pre><code class="language-bash">netfilter-persistent save
+</code></pre>
+<hr />
+<h2 id="8">8. 常用防火墙策略示例</h2>
+<h3 id="_6">最小化防火墙策略（仅允许本地环回 + 已建立连接）：</h3>
+<pre><code class="language-bash">iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t mangle -F
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+</code></pre>
+<hr />
+<h2 id="9">9. 端口开放与限制访问</h2>
+<h3 id="http-https">允许 HTTP 和 HTTPS：</h3>
+<pre><code class="language-bash">iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+</code></pre>
+<h3 id="_7">拒绝某个端口：</h3>
+<pre><code class="language-bash">iptables -A INPUT -p tcp --dport 25 -j DROP
+</code></pre>
+<hr />
+<h2 id="10-ip">10. IP 限制与黑白名单</h2>
+<h3 id="ip">屏蔽单个 IP：</h3>
+<pre><code class="language-bash">iptables -A INPUT -s 192.168.1.100 -j DROP
+</code></pre>
+<h3 id="ip-ssh">允许特定 IP 访问 SSH：</h3>
+<pre><code class="language-bash">iptables -A INPUT -p tcp --dport 22 -s 192.168.1.0/24 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
+</code></pre>
+<h3 id="ip_1">白名单模式（只允许白名单 IP）：</h3>
+<pre><code class="language-bash">iptables -A INPUT -s 192.168.1.100 -j ACCEPT
+iptables -A INPUT -s 10.0.0.0/24 -j ACCEPT
+iptables -A INPUT -j DROP
+</code></pre>
+<hr />
+<h2 id="11">11. 状态匹配（连接追踪）</h2>
+<pre><code class="language-bash"># 允许已建立连接和相关流量
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+</code></pre>
+<hr />
+<h2 id="12">12. 日志记录</h2>
+<pre><code class="language-bash"># 记录被拒绝的数据包
+iptables -A INPUT -j LOG --log-prefix &quot;IPTABLES-DROP: &quot;
+</code></pre>
+<blockquote>
+<p>日志会写入 <code>/var/log/kern.log</code> 或 <code>/var/log/messages</code>，取决于系统配置。</p>
+</blockquote>
+<hr />
+<h2 id="13-nat">13. NAT 配置</h2>
+<h3 id="snat">SNAT（源地址转换）：</h3>
+<pre><code class="language-bash">iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+</code></pre>
+<h3 id="dnat">DNAT（目标地址转换）：</h3>
+<pre><code class="language-bash">iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.1.10:8080
+</code></pre>
+<hr />
+<h2 id="14">14. 高级用法：自定义链</h2>
+<pre><code class="language-bash"># 创建自定义链
+iptables -N BLACKLIST
+
+# 添加规则到自定义链
+iptables -A BLACKLIST -s 192.168.1.100 -j DROP
+iptables -A BLACKLIST -s 10.0.0.0/24 -j DROP
+
+# 在主链中引用自定义链
+iptables -A INPUT -j BLACKLIST
+</code></pre>
+<hr />
+<h2 id="15">15. 实战案例</h2>
+<h3 id="web">✅ 案例一：Web 服务器防火墙</h3>
+<pre><code class="language-bash"># 默认策略
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+# 允许本地环回
+iptables -A INPUT -i lo -j ACCEPT
+
+# 已建立连接允许
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# 允许 SSH、HTTP、HTTPS
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+# 屏蔽黑名单 IP
+iptables -A INPUT -s 192.168.1.100 -j DROP
+</code></pre>
+<hr />
+<h3 id="nat">✅ 案例二：NAT 路由器配置</h3>
+<pre><code class="language-bash"># 开启内核转发
+echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+
+# 配置 NAT
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+# 允许内部网络访问
+iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+</code></pre>
+<hr />
+<h2 id="16">16. 常见问题解答</h2>
+<h3 id="q1">Q1：为什么我设置了规则但无法访问服务？</h3>
+<ul>
+<li>检查默认策略是否为 <code>DROP</code></li>
+<li>规则顺序很重要，越具体的规则应放在前面</li>
+<li>是否清除了旧规则？</li>
+<li>是否开启了内核转发（NAT 场景）？</li>
+</ul>
+<h3 id="q2">Q2：如何查看规则编号？</h3>
+<pre><code class="language-bash">iptables -L INPUT --line-numbers
+</code></pre>
+<h3 id="q3-icmpping">Q3：如何阻止 ICMP（Ping）请求？</h3>
+<pre><code class="language-bash">iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+</code></pre>
+<hr />
+<h2 id="_8">📚 推荐资源</h2>
+<ul>
+<li>官方文档：<a href="https://www.netfilter.org/documentation/">https://www.netfilter.org/documentation/</a></li>
+<li><code>man iptables</code>：Linux 下直接查看帮助文档</li>
+<li><code>iptables-extensions</code>：扩展模块使用指南</li>
+<li>社区论坛：<a href="https://forum.netfilter.org/">https://forum.netfilter.org/</a></li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.instant", "content.action.edit", "navigation.prune", "toc.follow", "content.code.copy", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
