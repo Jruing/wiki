@@ -34,169 +34,196 @@ theme:
 nav:
   - 简介:
     - 关于: index.md
-  - Python:
-    - 基础:
-      - 创建虚拟环境及配置: Python/advanced/Python 创建虚拟环境及配置.md
-      - 读取指定文件指定行: Python/advanced/Python 读取指定文件指定行.md
-    - 进阶:
-      - Schema数据结构: Python/advanced/Python学习笔记-Schema数据结构及类型校验.md
-      - Python 调用dll: Python/advanced/Python 调用dll.md
-      - 链式函数调用: Python/advanced/Python 实现链式函数调用.md
-      - 类型提示: Python/advanced/Python代码参数类型提示(Type Hints)笔记.md
-      - with上下文管理器: Python/advanced/Python上下文管理器with  学习笔记.md
-      - yield用法及优点: Python/advanced/Python学习笔记-yield用法及优点.md
-      - python代码进行加密: Python/advanced/利用Cython对python代码进行加密.md
-      - property和setter: Python/advanced/Python学习笔记-property和setter.md
-      - 装饰器: Python/advanced/Python学习笔记-装饰器.md
-      - 偏函数: Python/advanced/python学习笔记-偏函数.md
-      - grpc: Python/advanced/Python学习笔记-grpc.md
-      - 魔术方法-__missing__: Python/advanced/Python学习笔记-__missing__用法.md
-    - 异常解决访问:
-      - 解决Pandas安装缺少_bz2模块: Python/other/解决Pandas安装缺少_bz2模块.md
-    - 其他:
-      - Apscheduler使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
-      - Zipapp打包可执行文件: Python/other/Python学习笔记-Zipapp打包可执行文件.md
-    - 爬虫:
-      - JsRPC练习: Python/Spider/JsRpc练习.md
-      - 有道翻译爬虫: Python/Spider/有道翻译爬虫.md
-      - selenium过图片滑块验证: Python/Spider/Python selenium过图片滑块验证.md
-      - 某验五子棋验证码: Python/Spider/某验五子棋验证码.md
-      - 无限VM debugger解决方案: Python/Spider/Python爬虫-无限VM debugger解决方案.md
-  - Golang:
-    - 基础:
-      - 常量: Golang/Golang学习笔记-常量.md
-      - 变量: Golang/Golang学习笔记-变量.md
-      - 判断: Golang/Golang学习笔记-判断.md
-      - 循环: Golang/Golang学习笔记-循环.md
-      - 数据类型: Golang/Golang学习笔记-数据类型.md
-      - 结构体与匿名结构体: Golang/Golang 学习笔记-结构体与匿名结构体.md
-    - 进阶:
-      - Viper配置解析: Golang/Golang 学习笔记-Viper.md
-      - JWT使用: Golang/Golang学习笔记-jwt.md
-      - Casbin权限管理: Golang/Golang学习笔记-Casbin学习笔记.md
-    - 其他: 
-      - 定时任务: Golang/Golang学习笔记-定时任务.md
-      - 跨平台编译: Golang/Golang 跨平台编译.md
-      - 自定义日志轮转及输出: Golang/Golang学习笔记-自定义日志轮转及输出.md
-      - 处理HTTP请求参数: Golang/Golang学习笔记-处理HTTP请求参数.md
-      - Corba CLI: Golang/Corba CLI 学习笔记.md
-      - sqlc代码生成: Golang/Golang 学习笔记-sqlc 代码生成.md
-  - 数据库:
-    - Postgres:
-      - 安装: database/postgres/postgres安装.md
-      - Sequence自增序列: database/postgres/Postgres学习笔记-Sequence自增序列.md
-    - Redis:
-      - Redis集群: database/postgres/Redis7.XCentos集群搭建.md
-    - MySQL:
-      - Mysql5.7绿色版安装: database/mysql/Mysql5.7 绿色版安装.md
-  - 自动化:
-    - Selenium: automation/Selenium接管已打开的浏览器.md
-  - 容器化:
-    - Docker:
-      - Docker在线安装教程: kubernetes/Docker 在线安装教程.md
-      - Docker-compose安装: kubernetes/Docker-Compose安装.md
-      - DockerSwarm: kubernetes/Docker Swarm 学习笔记.md
-      - Docker镜像仓库搭建: kubernetes/Docker-构建私有镜像仓库.md
-      - 容器镜像导入导出: kubernetes/Docker笔记-容器镜像导入导出.md
-      - Docker常用小技巧: kubernetes/Docker 常用技巧.md
-      - 安装Nginx及实践应用: kubernetes/Docker 安装Nginx及实践应用.md
-      - 多阶段构建学习笔记: kubernetes/Docker 多阶段构建学习笔记.md
-      - 镜像体积缩小: kubernetes/Docker 镜像体积缩小.md
-    - kubernetes:
-      - 安装: kubernetes/kubernetes学习笔记-安装.md
-      - Pod: kubernetes/kubernetes学习笔记-Pod.md
-      - NameSpace: kubernetes/kubernetes学习笔记-namespace.md
-      - ReplicaSet: kubernetes/kubernetes学习笔记-ReplicaSet.md
-      - Depolyment: kubernetes/kubernetes学习笔记-Depolyment.md
-      - Service: kubernetes/kubernetes学习笔记-Service.md
-      - ConfigMap: kubernetes/kubernetes学习笔记-ConfigMap.md
-      - Ingress: kubernetes/kubernetes学习笔记-Ingress.md
-      - helm学习笔记: kubernetes/helm学习笔记.md
-  - Linux:
-    - Nginx:
-      - 简介: Linux/nginx/Nginx学习笔记-Nginx简介.md
-      - 安装Nginx: Linux/nginx/Nginx学习笔记-Centos 7 安装Nginx.md
-      - 配置文件详解: Linux/nginx/Nginx学习笔记-配置文件详解.md
-      - 部署静态页面实践: Linux/nginx/Nginx学习笔记-部署静态页面实践.md
-      - auth_basic认证: Linux/nginx/Nginx学习笔记-auth_basic认证.md
-      - 负载均衡配置: Linux/nginx/Nginx学习笔记-负载均衡配置.md
-      - 图片防盗链: Linux/nginx/Nginx学习笔记-图片防盗链.md
-      - 黑/白名单: Linux/nginx/Nginx学习笔记-黑名单-白名单.md
-      - 前端后端跨域: Linux/nginx/Nginx学习笔记-解决前端后端跨域.md
-    - caddy:
-      - 简介: Linux/caddy/caddy简介.md
-      - 手册: Linux/caddy/caddy手册.md
-      - 安装: Linux/caddy/caddy安装.md
-      - 静态文件目录: Linux/caddy/caddy静态文件.md
-      - 静态站点: Linux/caddy/caddy实战-静态站点.md
-      - BasicAuth: Linux/caddy/caddy实战-basicauth.md
-    - 监控:
-      - Loki日志监控: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
-      - Uptime-kuma监控: Linux/monitor/Uptime-kuma 监控.md
-    - Prometheus:
-      - 安装: Linux/Prometheus/Prometheus笔记-安装.md
-      - 配置文件字段解析: Linux/Prometheus/Prometheus笔记-配置文件字段解析.md
-      - 基于文件发现: Linux/Prometheus/Prometheus笔记-file_sd_config.md
-      - 安装Node_exporter: Linux/Prometheus/Prometheus笔记-安装Node_exporter.md
-      - 安装blackbox_exporter: Linux/Prometheus/Prometheus笔记-安装blackbox_exporter.md
-      - 监控docker容器: Linux/Prometheus/Prometheus笔记-监控docker容器.md
-      - 设置Basic_auth登录校验: Linux/Prometheus/Prometheus笔记-设置Basic_auth登录校验.md
-      - Label标签: Linux/Prometheus/Prometheus笔记-Label标签.md
-      - 告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
-      - Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
-    - 其他:
-      - Systemd: Linux/other/Systemd 学习笔记.md
-      - FTP服务: Linux/other/Centos7 搭建FTP服务.md
-      - Linux免密登录: Linux/other/Linux免密登录.md
-      - 令牌桶限流: Linux/other/令牌桶限流.md
-      - 服务器基础信息查询脚本: Linux/other/服务器基础信息查询脚本.md
-      - Linux tmux使用手册: Linux/other/Linux tmux 使用手册.md
-      - Linux screen使用手册: Linux/other/Linux screen快速参考手册.md
-      - Linux sed: Linux/other/sed手册.md
-      - Linux awk: Linux/other/awk手册.md
-      - SSH隧道代理使用手册: Linux/other/SSH 隧道代理使用手册.md
-      - iptables使用手册: Linux/other/iptables.md
-
-  - ServerLess:
-    - Fnproject: 
-      - 搭建: Linux/serverless/ServerLess学习笔记-Fnproject搭建.md
-      - 常用命令: Linux/serverless/ServerLess学习笔记-Fnproject常用命令.md
-      - 示例: Linux/serverless/ServerLess学习笔记-搭建FN示例.md
-  - 前端:
-    - Javascript: 
-      - js拷贝复制: front/Javascript学习笔记-js实现拷贝复制功能.md
-      - js控制台hook请求: front/js控制台Hook.md
-      - fetch发送请求: front/fetch 学习笔记.md
-    - React:
-      - 基础:
-        - 安装: front/React/React-安装.md
-        - JSX语法: front/React/React-JSX.md
-        - 数据展示: front/React/React-数据展示.md
-        - 条件判断: front/React/React-条件判断.md
-        - 列表渲染: front/React/React-列表渲染.md
-        - 响应事件: front/React/React-响应事件.md
-        - 更新页面数据: front/React/React-更新页面数据.md
-        - Props传递给组件: front/React/React-Props传递给组件.md
-    - Vue3:
-      - 进阶:
-        - 基础环境搭建: front/Vue/Vue3+Vite项目基础环境搭建.md
-        - Router路由管理: front/Vue/Vue3 Router路由.md
   - AI:
-    - 提示词: AI/prompt/提示词.md
-    - AI应用:
-      - AnythingLLM搭建RAG: AI/AnythingLLM+Ollama搭建本地知识库.md
-      - OneAPI搭建: AI/Docker安装OneAPI.md
-      - MCP学习笔记: AI/MCP学习笔记.md
-      - MCP从0到1搭建: AI/MCP从0到1.md
-      - MCP主机资源查询: AI/MCP学习笔记-查询主机资源使用情况.md
-      - LlamaIndex-Agent查询数据库: AI/LlamaIndex-Agent关联数据库.md
-      - LlamaIndex-Agent自然语言查询数据库: AI/Llamaindex-Agent自然语言查询数据库.md
-  - 未分类:
-    - UPX: other/UPX使用方法.md
-    - 订阅号消息通知: other/基于订阅号开发属于自己的微信消息通知.md
-    - Neo4j实现一个简单的CMDB管理平台: other/Neo4j 实现一个简单的CMDB管理平台.md
-    - Wiki.js安装: other/Wiki.js 安装.md
-    - Frp内网穿透搭建: other/Frp 内网穿透搭建.md
+    - AI_Agent:
+      - AnythingLLM+Ollama搭建本地知识库: AI/AIAgent/AnythingLLM+Ollama搭建本地知识库.md
+      - LlamaIndex-Agent关联数据库: AI/AIAgent/LlamaIndex-Agent关联数据库.md
+      - Llamaindex-Agent自然语言查询数据库: AI/AIAgent/Llamaindex-Agent自然语言查询数据库.md
+    - MCP:
+      - MCP学习笔记-从0到1: AI/MCP/MCP学习笔记-从0到1.md
+      - MCP学习笔记-天气预报: AI/MCP/MCP学习笔记-天气预报.md
+      - MCP学习笔记-查询主机资源使用情况: AI/MCP/MCP学习笔记-查询主机资源使用情况.md
+    - 其他:
+      - Docker安装OneAPI: AI/other/Docker安装OneAPI.md
+    - 提示词:
+      - deepseekR1增强: AI/Prompt/deepseekR1增强.md
+      - Graphviz工具: AI/Prompt/Graphviz工具.md
+      - 互动式零基础教学: AI/Prompt/互动式零基础教学.md
+      - 人类作者模拟器: AI/Prompt/人类作者模拟器.md
+      - 单词记忆助手: AI/Prompt/单词记忆助手.md
+      - 反向PUA: AI/Prompt/反向PUA.md
+      - 叛逆小子: AI/Prompt/叛逆小子.md
+      - 可视化网页: AI/Prompt/可视化网页.md
+      - 天气卡片: AI/Prompt/天气卡片.md
+      - 归纳总结: AI/Prompt/归纳总结.md
+      - 源文档到SVG幻灯片生成器: AI/Prompt/源文档到SVG幻灯片生成器.md
+      - 猫娘: AI/Prompt/猫娘.md
+      - 黑白系图片生成: AI/Prompt/黑白系图片生成.md
+  - 自动化:
+    - Selenium接管浏览器: automation/Selenium接管浏览器.md
+  - 数据库:
+    - mysql:
+      - Mysql57绿色版安装: database/mysql/Mysql57绿色版安装.md
+    - postgres:
+      - Postgres学习笔记-Sequence自增序列: database/postgres/Postgres学习笔记-Sequence自增序列.md
+      - postgres安装: database/postgres/postgres安装.md
+    - redis:
+      - Redis7.XCentos集群搭建: database/redis/Redis7.XCentos集群搭建.md
+  - 前端:
+    - fetch 学习笔记: front/fetch 学习笔记.md
+    - Javascript学习笔记-js实现拷贝复制功能: front/Javascript学习笔记-js实现拷贝复制功能.md
+    - js控制台Hook: front/js控制台Hook.md
+    - React:
+      - React-JSX: front/React/React-JSX.md
+      - React-Props传递给组件: front/React/React-Props传递给组件.md
+      - React-列表渲染: front/React/React-列表渲染.md
+      - React-响应事件: front/React/React-响应事件.md
+      - React-安装: front/React/React-安装.md
+      - React-数据展示: front/React/React-数据展示.md
+      - React-更新页面数据: front/React/React-更新页面数据.md
+      - React-条件判断: front/React/React-条件判断.md
+    - Vue:
+      - Vue3 Router路由: front/Vue/Vue3 Router路由.md
+      - Vue3+Vite项目基础环境搭建: front/Vue/Vue3+Vite项目基础环境搭建.md
+  - Golang:
+    - 高阶:
+      - Golang 学习笔记-sqlc 代码生成: Golang/advanced/Golang 学习笔记-sqlc 代码生成.md
+      - Golang 学习笔记-Viper: Golang/advanced/Golang 学习笔记-Viper.md
+      - Golang 学习笔记-结构体与匿名结构体: Golang/advanced/Golang 学习笔记-结构体与匿名结构体.md
+      - Golang学习笔记-Casbin学习笔记: Golang/advanced/Golang学习笔记-Casbin学习笔记.md
+      - Golang学习笔记-CorbaCLI学习笔记: Golang/advanced/Golang学习笔记-CorbaCLI学习笔记.md
+      - Golang学习笔记-jwt: Golang/advanced/Golang学习笔记-jwt.md
+      - Golang学习笔记-处理HTTP请求参数: Golang/advanced/Golang学习笔记-处理HTTP请求参数.md
+      - Golang学习笔记-定时任务: Golang/advanced/Golang学习笔记-定时任务.md
+      - Golang学习笔记-自定义日志轮转及输出: Golang/advanced/Golang学习笔记-自定义日志轮转及输出.md
+      - Golang学习笔记-跨平台编译: Golang/advanced/Golang学习笔记-跨平台编译.md
+    - 基础:
+      - Golang学习笔记-判断: Golang/tutorial/Golang学习笔记-判断.md
+      - Golang学习笔记-变量: Golang/tutorial/Golang学习笔记-变量.md
+      - Golang学习笔记-常量: Golang/tutorial/Golang学习笔记-常量.md
+      - Golang学习笔记-循环: Golang/tutorial/Golang学习笔记-循环.md
+      - Golang学习笔记-数据类型: Golang/tutorial/Golang学习笔记-数据类型.md
+  - 云原生:
+    - docker:
+      - Docker Swarm 学习笔记: kubernetes/docker/Docker Swarm 学习笔记.md
+      - Docker-Compose安装: kubernetes/docker/Docker-Compose安装.md
+      - Docker学习笔记-redis部署: kubernetes/docker/Docker学习笔记-redis部署.md
+      - Docker学习笔记-在线安装教程: kubernetes/docker/Docker学习笔记-在线安装教程.md
+      - Docker学习笔记-多阶段构建学习笔记: kubernetes/docker/Docker学习笔记-多阶段构建学习笔记.md
+      - Docker学习笔记-安装Nginx及实践应用: kubernetes/docker/Docker学习笔记-安装Nginx及实践应用.md
+      - Docker学习笔记-容器镜像导入导出: kubernetes/docker/Docker学习笔记-容器镜像导入导出.md
+      - Docker学习笔记-构建私有镜像仓库: kubernetes/docker/Docker学习笔记-构建私有镜像仓库.md
+      - Docker学习笔记-镜像体积缩小: kubernetes/docker/Docker学习笔记-镜像体积缩小.md
+    - k8s:
+      - kubernetes学习笔记-ConfigMap: kubernetes/k8s/kubernetes学习笔记-ConfigMap.md
+      - kubernetes学习笔记-Depolyment: kubernetes/k8s/kubernetes学习笔记-Depolyment.md
+      - kubernetes学习笔记-helm: kubernetes/k8s/kubernetes学习笔记-helm.md
+      - kubernetes学习笔记-Ingress: kubernetes/k8s/kubernetes学习笔记-Ingress.md
+      - kubernetes学习笔记-namespace: kubernetes/k8s/kubernetes学习笔记-namespace.md
+      - kubernetes学习笔记-Pod: kubernetes/k8s/kubernetes学习笔记-Pod.md
+      - kubernetes学习笔记-ReplicaSet: kubernetes/k8s/kubernetes学习笔记-ReplicaSet.md
+      - kubernetes学习笔记-Service: kubernetes/k8s/kubernetes学习笔记-Service.md
+      - kubernetes学习笔记-安装: kubernetes/k8s/kubernetes学习笔记-安装.md
+      - kubernetes学习笔记-搭建K3s集群: kubernetes/k8s/kubernetes学习笔记-搭建K3s集群.md
+  - Linux:
+    - caddy:
+      - caddy安装: Linux/caddy/caddy安装.md
+      - caddy实战-basicauth授权: Linux/caddy/caddy实战-basicauth授权.md
+      - caddy实战-反向代理: Linux/caddy/caddy实战-反向代理.md
+      - caddy实战-静态站点: Linux/caddy/caddy实战-静态站点.md
+      - caddy实战-黑白名单: Linux/caddy/caddy实战-黑白名单.md
+      - caddy手册: Linux/caddy/caddy手册.md
+      - caddy简介: Linux/caddy/caddy简介.md
+      - caddy静态文件: Linux/caddy/caddy静态文件.md
+    - monitor:
+      - Uptime-kuma 监控: Linux/monitor/Uptime-kuma 监控.md
+      - 基于Grafana+Loki+Promatil搭建日志分析平台: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
+    - nginx:
+      - Nginx学习笔记-auth_basic认证: Linux/nginx/Nginx学习笔记-auth_basic认证.md
+      - Nginx学习笔记-Centos 7 安装Nginx: Linux/nginx/Nginx学习笔记-Centos 7 安装Nginx.md
+      - Nginx学习笔记-Nginx简介: Linux/nginx/Nginx学习笔记-Nginx简介.md
+      - Nginx学习笔记-图片防盗链: Linux/nginx/Nginx学习笔记-图片防盗链.md
+      - Nginx学习笔记-解决前端后端跨域: Linux/nginx/Nginx学习笔记-解决前端后端跨域.md
+      - Nginx学习笔记-负载均衡配置: Linux/nginx/Nginx学习笔记-负载均衡配置.md
+      - Nginx学习笔记-部署静态页面实践: Linux/nginx/Nginx学习笔记-部署静态页面实践.md
+      - Nginx学习笔记-配置文件详解: Linux/nginx/Nginx学习笔记-配置文件详解.md
+      - Nginx学习笔记-黑名单-白名单: Linux/nginx/Nginx学习笔记-黑名单-白名单.md
+    - other:
+      - linux学习笔记-awk: Linux/other/linux学习笔记-awk.md
+      - Linux学习笔记-cgroup(一): Linux/other/Linux学习笔记-cgroup(一).md
+      - linux学习笔记-cgroup(二): Linux/other/linux学习笔记-cgroup(二).md
+      - linux学习笔记-grep: Linux/other/linux学习笔记-grep.md
+      - linux学习笔记-iptables: Linux/other/linux学习笔记-iptables.md
+      - Linux学习笔记-jq: Linux/other/Linux学习笔记-jq.md
+      - linux学习笔记-rsync数据同步: Linux/other/linux学习笔记-rsync数据同步.md
+      - linux学习笔记-screen: Linux/other/linux学习笔记-screen.md
+      - linux学习笔记-sed手册: Linux/other/linux学习笔记-sed手册.md
+      - linux学习笔记-SSH隧道代理: Linux/other/linux学习笔记-SSH隧道代理.md
+      - linux学习笔记-Systemd: Linux/other/linux学习笔记-Systemd.md
+      - linux学习笔记-tmux: Linux/other/linux学习笔记-tmux.md
+      - linux学习笔记-免密登录: Linux/other/linux学习笔记-免密登录.md
+      - linux学习笔记-搭建FTP服务: Linux/other/linux学习笔记-搭建FTP服务.md
+      - linux学习笔记-服务器基础信息查询脚本: Linux/other/linux学习笔记-服务器基础信息查询脚本.md
+      - Ubuntu 22.04 上安装 Python 3.12: Linux/other/Ubuntu 22.04 上安装 Python 3.12.md
+      - 令牌桶限流: Linux/other/令牌桶限流.md
+    - Prometheus:
+      - Prometheus笔记-file_sd_config: Linux/Prometheus/Prometheus笔记-file_sd_config.md
+      - Prometheus笔记-Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
+      - Prometheus笔记-Label标签: Linux/Prometheus/Prometheus笔记-Label标签.md
+      - Prometheus笔记-告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
+      - Prometheus笔记-安装: Linux/Prometheus/Prometheus笔记-安装.md
+      - Prometheus笔记-安装blackbox_exporter: Linux/Prometheus/Prometheus笔记-安装blackbox_exporter.md
+      - Prometheus笔记-安装Node_exporter: Linux/Prometheus/Prometheus笔记-安装Node_exporter.md
+      - Prometheus笔记-监控docker容器: Linux/Prometheus/Prometheus笔记-监控docker容器.md
+      - Prometheus笔记-设置Basic_auth登录校验: Linux/Prometheus/Prometheus笔记-设置Basic_auth登录校验.md
+      - Prometheus笔记-配置文件字段解析: Linux/Prometheus/Prometheus笔记-配置文件字段解析.md
+    - serverless:
+      - ServerLess学习笔记-Fnproject常用命令: Linux/serverless/ServerLess学习笔记-Fnproject常用命令.md
+      - ServerLess学习笔记-Fnproject搭建: Linux/serverless/ServerLess学习笔记-Fnproject搭建.md
+      - ServerLess学习笔记-搭建FN示例: Linux/serverless/ServerLess学习笔记-搭建FN示例.md
+  - 其他:
+    - Frp 内网穿透搭建: other/Frp 内网穿透搭建.md
     - jookdb重置试用期: other/jookdb重置试用期.md
+    - Neo4j 实现一个简单的CMDB管理平台: other/Neo4j 实现一个简单的CMDB管理平台.md
+    - SSH隧道代理: other/SSH隧道代理.md
     - task任务构建工具: other/task任务构建工具.md
+    - UPX使用方法: other/UPX使用方法.md
+    - Wiki.js 安装: other/Wiki.js 安装.md
     - win10右键添加复制文件绝对路径: other/win10右键添加复制文件绝对路径.md
+    - 基于订阅号开发属于自己的微信消息通知: other/基于订阅号开发属于自己的微信消息通知.md
+    - 软件推荐: other/软件推荐.md
+  - Python:
+    - 高阶:
+      - Python学习笔记-grpc: Python/advanced/Python学习笔记-grpc.md
+      - Python学习笔记-property和setter: Python/advanced/Python学习笔记-property和setter.md
+      - Python学习笔记-Schema数据结构及类型校验: Python/advanced/Python学习笔记-Schema数据结构及类型校验.md
+      - Python学习笔记-with上下文管理器: Python/advanced/Python学习笔记-with上下文管理器.md
+      - Python学习笔记-yield用法及优点: Python/advanced/Python学习笔记-yield用法及优点.md
+      - Python学习笔记-Zipapp打包可执行文件: Python/advanced/Python学习笔记-Zipapp打包可执行文件.md
+      - Python学习笔记-__missing__用法: Python/advanced/Python学习笔记-__missing__用法.md
+      - python学习笔记-偏函数: Python/advanced/python学习笔记-偏函数.md
+      - Python学习笔记-创建虚拟环境及配置: Python/advanced/Python学习笔记-创建虚拟环境及配置.md
+      - Python学习笔记-参数类型提示: Python/advanced/Python学习笔记-参数类型提示.md
+      - Python学习笔记-实现链式函数调用: Python/advanced/Python学习笔记-实现链式函数调用.md
+      - Python学习笔记-装饰器: Python/advanced/Python学习笔记-装饰器.md
+      - Python学习笔记-读取指定文件指定行: Python/advanced/Python学习笔记-读取指定文件指定行.md
+      - Python学习笔记-调用dll: Python/advanced/Python学习笔记-调用dll.md
+    - 其他:
+      - Apscheduler 使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
+      - 利用Cython对python代码进行加密: Python/other/利用Cython对python代码进行加密.md
+      - 解决Pandas安装缺少_bz2模块: Python/other/解决Pandas安装缺少_bz2模块.md
+    - 爬虫:
+      - JsRpc练习: Python/Spider/JsRpc练习.md
+      - Python selenium过图片滑块验证: Python/Spider/Python selenium过图片滑块验证.md
+      - Python爬虫-无限VM debugger解决方案: Python/Spider/Python爬虫-无限VM debugger解决方案.md
+      - 有道翻译爬虫: Python/Spider/有道翻译爬虫.md
+      - 某验五子棋验证码: Python/Spider/某验五子棋验证码.md
+    - 基础:
+      - 函数: Python/tutorial/函数.md
+      - 判断: Python/tutorial/判断.md
+      - 安装环境: Python/tutorial/安装环境.md
+      - 异常处理: Python/tutorial/异常处理.md
+      - 循环: Python/tutorial/循环.md
+      - 数据类型: Python/tutorial/数据类型.md
+      - 模块: Python/tutorial/模块.md
+      - 类: Python/tutorial/类.md
