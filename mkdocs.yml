@@ -52,19 +52,19 @@ nav:
     - 其他:
       - Docker安装OneAPI: AI/other/Docker安装OneAPI.md
     - 提示词:
-      - deepseekR1增强: AI/Prompt/deepseekR1增强.md
-      - Graphviz工具: AI/Prompt/Graphviz工具.md
-      - 互动式零基础教学: AI/Prompt/互动式零基础教学.md
-      - 人类作者模拟器: AI/Prompt/人类作者模拟器.md
-      - 单词记忆助手: AI/Prompt/单词记忆助手.md
-      - 反向PUA: AI/Prompt/反向PUA.md
-      - 叛逆小子: AI/Prompt/叛逆小子.md
-      - 可视化网页: AI/Prompt/可视化网页.md
-      - 天气卡片: AI/Prompt/天气卡片.md
-      - 归纳总结: AI/Prompt/归纳总结.md
-      - 源文档到SVG幻灯片生成器: AI/Prompt/源文档到SVG幻灯片生成器.md
-      - 猫娘: AI/Prompt/猫娘.md
-      - 黑白系图片生成: AI/Prompt/黑白系图片生成.md
+      - deepseekR1增强: AI/prompt/deepseekR1增强.md
+      - Graphviz工具: AI/prompt/Graphviz工具.md
+      - 互动式零基础教学: AI/prompt/互动式零基础教学.md
+      - 人类作者模拟器: AI/prompt/人类作者模拟器.md
+      - 单词记忆助手: AI/prompt/单词记忆助手.md
+      - 反向PUA: AI/prompt/反向PUA.md
+      - 叛逆小子: AI/prompt/叛逆小子.md
+      - 可视化网页: AI/prompt/可视化网页.md
+      - 天气卡片: AI/prompt/天气卡片.md
+      - 归纳总结: AI/prompt/归纳总结.md
+      - 源文档到SVG幻灯片生成器: AI/prompt/源文档到SVG幻灯片生成器.md
+      - 猫娘: AI/prompt/猫娘.md
+      - 黑白系图片生成: AI/prompt/黑白系图片生成.md
   - 自动化:
     - Selenium接管浏览器: automation/Selenium接管浏览器.md
   - 数据库:
