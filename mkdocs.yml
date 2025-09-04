@@ -9,6 +9,8 @@ theme:
     repo: fontawesome/brands/git-alt
   name: material
   highlightjs: true
+  plugins:
+  - social
   hljs_languages:
     - yaml
     - rust
@@ -20,15 +22,19 @@ theme:
     - go
     - html
   features:
-    - content.action.edit
+    - navigation.top # 返回到顶部
+    - navigation.path # 导航路径
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.tracking
     - navigation.instant
-    - navigation.path # 导航路径
-    - navigation.top # 返回到顶部
+    - content.action.edit
+    - navigation.prune
+    - toc.follow
     - content.code.copy #代码复制
     - search.suggest # 搜索建议
     - search.highlight # 搜索高亮
+    - search.share
 
 
 nav:
