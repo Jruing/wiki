@@ -18,50 +18,50 @@
 
 2. 下载依赖到`myapp`目录中
 
-   ```
-   python -m pip install flask --target myapp
-   ```
+```
+python -m pip install flask --target myapp
+```
 
 3. 创建文件 `testapp.py`，将文件放入`myapp`目录中
 
-   ```
-   # encoding:utf8
-   
-   from flask import Flask
-   app = Flask(__name__)
-   
-   @app.route("/")
-   def hello():
-       return "Hello World!"
-   
-   def main():
-       app.run()
-   ```
+```
+# encoding:utf8
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+      return "Hello World!"
+
+def main():
+      app.run()
+```
 
 4. 打包
 
-   ```
-   # 方式一
-   # 参数解释
-   # -o 输出文件名称，文件名称必须有pyz后缀
-   # -c 利用 deflate 方法压缩文件，减少输出文件的大小，默认不压缩
-   # -m 指定调用对象，模块中的方法mod:function，如果是多层级，则是pkg.mod:function
-   # -p 指定解释器，尽量避免使用具体版本的Python解释器，如python3.6，若打包的可执行文件需要在liunx中执行，则必须指定，参考 `/usr/bin/python`
-   python -m zipapp myapp -o app.pyz -c -m "testapp:main"
-   
-   # 方式二
-   import zipapp
-   zipapp.create_archive('myapp', 'app.pyz')
-   ```
+```
+# 方式一
+# 参数解释
+# -o 输出文件名称，文件名称必须有pyz后缀
+# -c 利用 deflate 方法压缩文件，减少输出文件的大小，默认不压缩
+# -m 指定调用对象，模块中的方法mod:function，如果是多层级，则是pkg.mod:function
+# -p 指定解释器，尽量避免使用具体版本的Python解释器，如python3.6，若打包的可执行文件需要在liunx中执行，则必须指定，参考 `/usr/bin/python`
+python -m zipapp myapp -o app.pyz -c -m "testapp:main"
+
+# 方式二
+import zipapp
+zipapp.create_archive('myapp', 'app.pyz')
+```
 
 5. 运行方式
 
-   ```cmd
-   # 方式一
-   python app.pyz
-   # 方式二
-   在配置python解释器环境变量后，windows上可以直接双击运行
-   ```
+```cmd
+# 方式一
+python app.pyz
+# 方式二
+在配置python解释器环境变量后，windows上可以直接双击运行
+```
 
 ## 注意事项
 
