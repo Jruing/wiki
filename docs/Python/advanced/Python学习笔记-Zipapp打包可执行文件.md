@@ -56,7 +56,7 @@ zipapp.create_archive('myapp', 'app.pyz')
 
 5. 运行方式
 
-```cmd
+```
 # 方式一
 python app.pyz
 # 方式二
