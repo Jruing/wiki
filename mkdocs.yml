@@ -65,6 +65,7 @@ nav:
       - 源文档到SVG幻灯片生成器: AI/prompt/源文档到SVG幻灯片生成器.md
       - 猫娘: AI/prompt/猫娘.md
       - 黑白系图片生成: AI/prompt/黑白系图片生成.md
+      - RooCode角色: AI/prompt/RooCode角色提示词.md
   - 自动化:
     - Selenium接管浏览器: automation/Selenium接管浏览器.md
   - 数据库:
