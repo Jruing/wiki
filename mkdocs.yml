@@ -214,6 +214,7 @@ nav:
       - Python学习笔记-装饰器: Python/advanced/Python学习笔记-装饰器.md
       - Python学习笔记-读取指定文件指定行: Python/advanced/Python学习笔记-读取指定文件指定行.md
       - Python学习笔记-调用dll: Python/advanced/Python学习笔记-调用dll.md
+      - Python学习笔记-struct处理二进制数据: Python/advanced/Python学习笔记-struct处理二进制数据.md
     - 其他:
       - Apscheduler 使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
       - 利用Cython对python代码进行加密: Python/other/利用Cython对python代码进行加密.md
