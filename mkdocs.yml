@@ -76,6 +76,7 @@ nav:
       - 猫娘: AI/prompt/猫娘.md
       - 黑白系图片生成: AI/prompt/黑白系图片生成.md
       - RooCode角色: AI/prompt/RooCode角色提示词.md
+      - 八荣八耻: AI/prompt/八荣八耻.md
   - 自动化:
     - Selenium接管浏览器: automation/Selenium接管浏览器.md
   - 数据库:
@@ -167,11 +168,12 @@ nav:
       - Nginx学习笔记-黑名单-白名单: Linux/nginx/Nginx学习笔记-黑名单-白名单.md
     - other:
       - linux学习笔记-awk: Linux/other/linux学习笔记-awk.md
-      - Linux学习笔记-cgroup(一): Linux/other/Linux学习笔记-cgroup(一).md
+      - linux学习笔记-sudo: Linux/other/linux学习笔记-sudo.md
+      - linux学习笔记-cgroup(一): Linux/other/linux学习笔记-cgroup(一).md
       - linux学习笔记-cgroup(二): Linux/other/linux学习笔记-cgroup(二).md
       - linux学习笔记-grep: Linux/other/linux学习笔记-grep.md
       - linux学习笔记-iptables: Linux/other/linux学习笔记-iptables.md
-      - Linux学习笔记-jq: Linux/other/Linux学习笔记-jq.md
+      - Linux学习笔记-jq: Linux/other/linux学习笔记-jq.md
       - linux学习笔记-rsync数据同步: Linux/other/linux学习笔记-rsync数据同步.md
       - linux学习笔记-screen: Linux/other/linux学习笔记-screen.md
       - linux学习笔记-sed手册: Linux/other/linux学习笔记-sed手册.md
