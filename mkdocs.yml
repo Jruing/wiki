@@ -168,6 +168,7 @@ nav:
       - Nginx学习笔记-黑名单-白名单: Linux/nginx/Nginx学习笔记-黑名单-白名单.md
     - other:
       - linux学习笔记-awk: Linux/other/linux学习笔记-awk.md
+      - linux学习笔记-ufw: Linux/other/linux学习笔记-ufw.md
       - linux学习笔记-sudo: Linux/other/linux学习笔记-sudo.md
       - linux学习笔记-cgroup(一): Linux/other/linux学习笔记-cgroup(一).md
       - linux学习笔记-cgroup(二): Linux/other/linux学习笔记-cgroup(二).md
