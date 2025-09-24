@@ -115,44 +115,47 @@ nav:
       - Golang学习笔记-定时任务: Golang/advanced/Golang学习笔记-定时任务.md
       - Golang学习笔记-自定义日志轮转及输出: Golang/advanced/Golang学习笔记-自定义日志轮转及输出.md
       - Golang学习笔记-跨平台编译: Golang/advanced/Golang学习笔记-跨平台编译.md
+      - Golang学习笔记-令牌桶限流: Golang/advanced/Golang学习笔记-令牌桶限流.md
     - 基础:
-      - Golang学习笔记-判断: Golang/tutorial/Golang学习笔记-判断.md
-      - Golang学习笔记-变量: Golang/tutorial/Golang学习笔记-变量.md
       - Golang学习笔记-常量: Golang/tutorial/Golang学习笔记-常量.md
+      - Golang学习笔记-变量: Golang/tutorial/Golang学习笔记-变量.md
+      - Golang学习笔记-判断: Golang/tutorial/Golang学习笔记-判断.md
       - Golang学习笔记-循环: Golang/tutorial/Golang学习笔记-循环.md
       - Golang学习笔记-数据类型: Golang/tutorial/Golang学习笔记-数据类型.md
   - 云原生:
     - docker:
+      - Docker学习笔记-在线安装教程: kubernetes/docker/Docker学习笔记-在线安装教程.md
       - Docker Swarm 学习笔记: kubernetes/docker/Docker Swarm 学习笔记.md
       - Docker-Compose安装: kubernetes/docker/Docker-Compose安装.md
       - Docker学习笔记-redis部署: kubernetes/docker/Docker学习笔记-redis部署.md
-      - Docker学习笔记-在线安装教程: kubernetes/docker/Docker学习笔记-在线安装教程.md
       - Docker学习笔记-多阶段构建学习笔记: kubernetes/docker/Docker学习笔记-多阶段构建学习笔记.md
       - Docker学习笔记-安装Nginx及实践应用: kubernetes/docker/Docker学习笔记-安装Nginx及实践应用.md
       - Docker学习笔记-容器镜像导入导出: kubernetes/docker/Docker学习笔记-容器镜像导入导出.md
       - Docker学习笔记-构建私有镜像仓库: kubernetes/docker/Docker学习笔记-构建私有镜像仓库.md
       - Docker学习笔记-镜像体积缩小: kubernetes/docker/Docker学习笔记-镜像体积缩小.md
     - k8s:
-      - kubernetes学习笔记-ConfigMap: kubernetes/k8s/kubernetes学习笔记-ConfigMap.md
-      - kubernetes学习笔记-Depolyment: kubernetes/k8s/kubernetes学习笔记-Depolyment.md
-      - kubernetes学习笔记-helm: kubernetes/k8s/kubernetes学习笔记-helm.md
-      - kubernetes学习笔记-Ingress: kubernetes/k8s/kubernetes学习笔记-Ingress.md
-      - kubernetes学习笔记-namespace: kubernetes/k8s/kubernetes学习笔记-namespace.md
+      - kubernetes学习笔记-安装: kubernetes/k8s/kubernetes学习笔记-安装.md
       - kubernetes学习笔记-Pod: kubernetes/k8s/kubernetes学习笔记-Pod.md
+      - kubernetes学习笔记-NameSpace: kubernetes/k8s/kubernetes学习笔记-namespace.md
+      - kubernetes学习笔记-Deployment: kubernetes/k8s/kubernetes学习笔记-Deployment.md
       - kubernetes学习笔记-ReplicaSet: kubernetes/k8s/kubernetes学习笔记-ReplicaSet.md
       - kubernetes学习笔记-Service: kubernetes/k8s/kubernetes学习笔记-Service.md
-      - kubernetes学习笔记-安装: kubernetes/k8s/kubernetes学习笔记-安装.md
+      - kubernetes学习笔记-ConfigMap: kubernetes/k8s/kubernetes学习笔记-ConfigMap.md
+      - kubernetes学习笔记-Ingress: kubernetes/k8s/kubernetes学习笔记-Ingress.md
+      - kubernetes学习笔记-helm: kubernetes/k8s/kubernetes学习笔记-helm.md
       - kubernetes学习笔记-搭建K3s集群: kubernetes/k8s/kubernetes学习笔记-搭建K3s集群.md
+
   - Linux:
     - caddy:
+      - caddy简介: Linux/caddy/caddy简介.md
+      - caddy手册: Linux/caddy/caddy手册.md
       - caddy安装: Linux/caddy/caddy安装.md
+      - caddy静态文件: Linux/caddy/caddy静态文件.md
       - caddy实战-basicauth授权: Linux/caddy/caddy实战-basicauth授权.md
       - caddy实战-反向代理: Linux/caddy/caddy实战-反向代理.md
       - caddy实战-静态站点: Linux/caddy/caddy实战-静态站点.md
       - caddy实战-黑白名单: Linux/caddy/caddy实战-黑白名单.md
-      - caddy手册: Linux/caddy/caddy手册.md
-      - caddy简介: Linux/caddy/caddy简介.md
-      - caddy静态文件: Linux/caddy/caddy静态文件.md
+
     - monitor:
       - Uptime-kuma 监控: Linux/monitor/Uptime-kuma 监控.md
       - 基于Grafana+Loki+Promatil搭建日志分析平台: Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md
@@ -185,22 +188,22 @@ nav:
       - linux学习笔记-搭建FTP服务: Linux/other/linux学习笔记-搭建FTP服务.md
       - linux学习笔记-服务器基础信息查询脚本: Linux/other/linux学习笔记-服务器基础信息查询脚本.md
       - Ubuntu 22.04 上安装 Python 3.12: Linux/other/Ubuntu 22.04 上安装 Python 3.12.md
-      - 令牌桶限流: Linux/other/令牌桶限流.md
     - Prometheus:
-      - Prometheus笔记-file_sd_config: Linux/Prometheus/Prometheus笔记-file_sd_config.md
-      - Prometheus笔记-Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
-      - Prometheus笔记-Label标签: Linux/Prometheus/Prometheus笔记-Label标签.md
-      - Prometheus笔记-告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
       - Prometheus笔记-安装: Linux/Prometheus/Prometheus笔记-安装.md
+      - Prometheus笔记-配置文件字段解析: Linux/Prometheus/Prometheus笔记-配置文件字段解析.md
       - Prometheus笔记-安装blackbox_exporter: Linux/Prometheus/Prometheus笔记-安装blackbox_exporter.md
       - Prometheus笔记-安装Node_exporter: Linux/Prometheus/Prometheus笔记-安装Node_exporter.md
       - Prometheus笔记-监控docker容器: Linux/Prometheus/Prometheus笔记-监控docker容器.md
+      - Prometheus笔记-file_sd_config: Linux/Prometheus/Prometheus笔记-file_sd_config.md
+      - Prometheus笔记-Label标签: Linux/Prometheus/Prometheus笔记-Label标签.md
+      - Prometheus笔记-Grafana可视化: Linux/Prometheus/Prometheus笔记-Grafana可视化.md
+      - Prometheus笔记-告警规则配置: Linux/Prometheus/Prometheus笔记-告警规则配置.md
       - Prometheus笔记-设置Basic_auth登录校验: Linux/Prometheus/Prometheus笔记-设置Basic_auth登录校验.md
-      - Prometheus笔记-配置文件字段解析: Linux/Prometheus/Prometheus笔记-配置文件字段解析.md
     - serverless:
-      - ServerLess学习笔记-Fnproject常用命令: Linux/serverless/ServerLess学习笔记-Fnproject常用命令.md
-      - ServerLess学习笔记-Fnproject搭建: Linux/serverless/ServerLess学习笔记-Fnproject搭建.md
       - ServerLess学习笔记-搭建FN示例: Linux/serverless/ServerLess学习笔记-搭建FN示例.md
+      - ServerLess学习笔记-Fnproject搭建: Linux/serverless/ServerLess学习笔记-Fnproject搭建.md
+      - ServerLess学习笔记-Fnproject常用命令: Linux/serverless/ServerLess学习笔记-Fnproject常用命令.md
+
   - 其他:
     - Frp 内网穿透搭建: other/Frp 内网穿透搭建.md
     - jookdb重置试用期: other/jookdb重置试用期.md
