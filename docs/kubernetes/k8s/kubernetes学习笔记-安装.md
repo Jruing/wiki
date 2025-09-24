@@ -1,7 +1,7 @@
 # 安装
 ```
 # 国内用户
-curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn sh -
+curl -sfL https ://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn sh -
 ```
 # 获取token
 ```
@@ -11,6 +11,8 @@ cat /var/lib/rancher/k3s/server/node-token
 ```
 curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn K3S_URL=https://替换成服务节点ip:6443 K3S_TOKEN=替换成上面获取的token sh -
 ```
+注意
+每台计算机必须具有唯一的主机名。如果您的计算机没有唯一的主机名，请传递​K3S_NODE_NAME​环境变量，并为每个节点提供一个有效且唯一的主机名。
 # 查询节点
 > 获取详细信息：kubectl get nodes -o wide
 ```
