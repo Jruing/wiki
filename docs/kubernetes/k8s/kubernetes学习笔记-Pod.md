@@ -43,3 +43,11 @@ kubectl delete -f demo-pod.yaml
 # 第二种，根据pod名称删除
 kubectl delete pod pod名称
 ```
+
+# 删除pod状态为terminating
+```
+# 方法1
+kubectl delete pod <pod-name> -n <namespace-name> --force --grace-period=0
+# 方法2
+kubectl patch pod <pod-name> -n <namespace-name> -p '{"metadata":{"finalizers":null}}'
+```
