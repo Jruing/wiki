@@ -1,240 +1,307 @@
-# Helm 学习笔记
-> Helm 是 Kubernetes 的包管理器
-## 手动执行
-```
-# 下载脚本
+## 简介
+
+> **Helm** 是 Kubernetes 的包管理器，类似于 Linux 下的 `apt` 或 `yum`，可以方便地管理 Kubernetes 中的应用程序。Helm 通过 **charts**（预打包的 Kubernetes 资源集合）来实现应用的安装、升级、版本控制等。
+
+---
+
+## 安装 Helm
+
+### 手动安装
+
+#### 1. 下载 Helm 安装脚本
+
+```bash
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-# 赋权
+```
+
+#### 2. 赋予安装脚本执行权限
+
+```bash
 chmod 700 get_helm.sh
-# 执行
+```
+
+#### 3. 执行安装脚本
+
+```bash
 ./get_helm.sh
-直接执行
+```
+
+或者直接执行：
+
+```bash
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
-## 添加Helm chart仓库
 
-> bitnami 仓库名称，可以自定义，https://charts.bitnami.com/bitnami 仓库地址
-```
+---
+
+## 添加 Helm Chart 仓库
+
+Helm 支持多个仓库，以下是添加常用仓库的命令：
+
+```bash
+# 添加 Bitnami 仓库
 helm repo add bitnami https://charts.bitnami.com/bitnami
-# 下面为国内常用的几个charts仓库
+
+# 国内常用的 Helm 仓库
 helm repo add aliyuncs https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 helm repo add kaiyuanshe http://mirror.kaiyuanshe.cn/kubernetes/charts
 helm repo add azure http://mirror.azure.cn/kubernetes/charts
 helm repo add dandydev https://dandydeveloper.github.io/charts
 ```
-## 更新chart仓库列表
-```
+
+---
+
+## 更新 Helm 仓库
+
+通过以下命令更新所有已添加的 Helm 仓库：
+
+```bash
 helm repo update
 ```
-## 查看chart仓库列表
-```
+
+---
+
+## 查看已添加的 Helm 仓库
+
+查看当前 Helm 仓库列表：
+
+```bash
 helm repo list
 ```
-## 删除仓库
+
+---
+
+## 删除 Helm 仓库
+
+删除指定仓库：
+
+```bash
+helm repo remove <repo-name>
 ```
+
+例如，删除 `bitnami` 仓库：
+
+```bash
 helm repo remove bitnami
 ```
-## 查看chart列表
-```
+
+---
+
+## 查看 Helm Charts 列表
+
+```bash
 helm list
 ```
+
+---
+
 ## 全网仓库查询
-> 从Artifact Hub中查询，他会列出所有mysql的charts
-```
+
+通过 `helm search hub` 从 Artifact Hub 查询 Helm Charts：
+
+```bash
 helm search hub mysql
 ```
+
+---
+
 ## 从本地仓库查询
-> 从安装的repo中查找，仅限于本地已安装的repo
-```
+
+查询已添加的本地 Helm 仓库中的 Charts：
+
+```bash
 helm search repo mysql
 ```
-## 拉取chart包
-```
+
+---
+
+## 拉取 Helm Chart 包
+
+拉取指定版本的 Helm Chart 包：
+
+```bash
 helm pull azure/mysql --version 0.3.5
 ```
-## 安装chart
->test-mysql 为自定义的release名称, aliyuncs/mysql 为charts名称
-```
+
+---
+
+## 安装 Helm Chart
+
+安装 Chart 时，可以通过 `--set` 参数传递自定义值，或直接使用 `helm install` 安装：
+
+### 示例 1：指定 `release` 名称安装
+
+```bash
 helm install test-mysql azure/mysql
-# 让chart随机生成release
+```
+
+### 示例 2：让 Helm 随机生成 `release` 名称
+
+```bash
 helm install aliyuncs/mysql --generate-name
-# 指定命名空间名称
-helm install aliyuncs/mysq --namespace my-namespace
-# 若命名空间不存在，则创建新的命名空间
-helm install aliyuncs/mysq --namespace my-namespace --create-namespace
 ```
-## 卸载chart
+
+### 示例 3：指定命名空间安装
+
+```bash
+helm install aliyuncs/mysql --namespace my-namespace
 ```
-helm uninstall <chart名称>
+
+### 示例 4：若命名空间不存在，则创建新的命名空间
+
+```bash
+helm install aliyuncs/mysql --namespace my-namespace --create-namespace
 ```
-## 查询状态
+
+---
+
+## 卸载 Helm Chart
+
+```bash
+helm uninstall <release-name>
 ```
+
+例如，卸载 `test-mysql`：
+
+```bash
+helm uninstall test-mysql
+```
+
+---
+
+## 查询 Helm Chart 状态
+
+```bash
+helm status <release-name>
+```
+
+例如，查询 `my-nginx` 状态：
+
+```bash
 helm status my-nginx
 ```
-## 自定义chart
-### 查询chart的可配置项
+
+---
+
+## 自定义 Helm Chart
+
+### 查询 Chart 的可配置项
+
+使用 `helm show values` 查看某个 Chart 的默认配置项：
+
+```bash
+helm show values azure/mysql
 ```
-[root@VM-12-11-centos k8s_yaml]# helm show values azure/mysql
-## mysql image version
-## ref: https://hub.docker.com/r/library/mysql/tags/
-##
-image: "mysql"
-imageTag: "5.7.14"
 
-## Specify password for root user
-##
-## Default: random 10 character string
-# mysqlRootPassword: testing
+该命令会列出该 Chart 支持的所有配置项，如：
 
-## Create a database user
-##
-# mysqlUser:
-# mysqlPassword:
+* MySQL 镜像版本、root 密码、数据库名称等。
+* 持久化配置、资源请求和限制等。
 
-## Allow unauthenticated access, uncomment to enable
-##
-# mysqlAllowEmptyPassword: true
+### 修改配置并安装
 
-## Create a database
-##
-# mysqlDatabase:
+可以通过 `--set` 参数覆盖 Chart 中的默认值：
 
-## Specify an imagePullPolicy (Required)
-## It's recommended to change this to 'Always' if the image tag is 'latest'
-## ref: http://kubernetes.io/docs/user-guide/images/#updating-images
-##
-imagePullPolicy: IfNotPresent
-
-livenessProbe:
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 5
-  successThreshold: 1
-  failureThreshold: 3
-
-readinessProbe:
-  initialDelaySeconds: 5
-  periodSeconds: 10
-  timeoutSeconds: 1
-  successThreshold: 1
-  failureThreshold: 3
-
-## Persist data to a persistent volume
-persistence:
-  enabled: true
-  ## database data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  accessMode: ReadWriteOnce
-  size: 8Gi
-
-## Configure resource requests and limits
-## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-##
-resources:
-  requests:
-    memory: 256Mi
-    cpu: 100m
-
-# Custom mysql configuration files used to override default mysql settings
-configurationFiles:
-#  mysql.cnf: |-
-#    [mysqld]
-#    skip-name-resolve
-
-
-## Configure the service
-## ref: http://kubernetes.io/docs/user-guide/services/
-service:
-  ## Specify a service type
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
-  type: ClusterIP
-  port: 3306
-  # nodePort: 32000
+```bash
+helm install --set mysqlRootPassword=test1234,mysqlDatabase=testdb,service.nodePort=32001,service.type=NodePort test-mysql azure/mysql
 ```
-### 修改配置并进行安装
+
+在上述命令中，`mysqlRootPassword`、`mysqlDatabase` 和 `service.nodePort` 是需要自定义的配置项。
+
+---
+
+## 更新 Helm Chart
+
+```bash
+helm upgrade <release-name> --set <key1>=<value1>,<key2>=<value2> <chart-name>
 ```
-# --set 设置多个键值对，以逗号为分隔符
-helm install --set     mysqlRootPassword=test1234,mysqlDatabase=testdb,service.nodePort=32001,service.type=NodePort test-mysql azure/mysql
-# -------------------结果-------------------------------
-[root@VM-12-11-centos helm_charts]# helm install --set     mysqlRootPassword=test1234,mysqlDatabase=testdb,service.nodePort=32001,service.type=NodePort test-mysql azure/mysql
-WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /etc/rancher/k3s/k3s.yaml
-WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /etc/rancher/k3s/k3s.yaml
-WARNING: This chart is deprecated
-NAME: test-mysql
-LAST DEPLOYED: Tue Jan 14 16:47:53 2025
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-NOTES:
-MySQL can be accessed via port 3306 on the following DNS name from within your cluster:
-test-mysql.default.svc.cluster.local
 
-To get your root password run:
+例如，更新 `test-mysql` 的 `mysqlRootPassword`：
 
-    MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace default test-mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo)
-
-To connect to your database:
-
-1. Run an Ubuntu pod that you can use as a client:
-
-    kubectl run -i --tty ubuntu --image=ubuntu:16.04 --restart=Never -- bash -il
-
-2. Install the mysql client:
-
-    $ apt-get update && apt-get install mysql-client -y
-
-3. Connect using the mysql cli, then provide your password:
-    $ mysql -h test-mysql -p
-
-To connect to your database directly from outside the K8s cluster:
-    MYSQL_HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].status.addresses[0].address}')
-    MYSQL_PORT=$(kubectl get svc --namespace default test-mysql -o jsonpath='{.spec.ports[0].nodePort}')
-
-    mysql -h ${MYSQL_HOST} -P${MYSQL_PORT} -u root -p${MYSQL_ROOT_PASSWORD}
-```    
-## 更新chart
+```bash
+helm upgrade test-mysql --set mysqlRootPassword=test1234 azure/mysql
 ```
-helm update --set mysqlRootPassword=test1234,mysqlDatabase=testdb,service.nodePort=32001,service.type=NodePort test-mysql azure/mysql
+
+---
+
+## 查看 Helm Chart 修订历史
+
+查看 `release` 的修订历史：
+
+```bash
+helm history <release-name>
 ```
-## 查看chart修订历史
-```
+
+例如，查看 `test-mysql` 的修订历史：
+
+```bash
 helm history test-mysql
 ```
-## 回滚chart
+
+---
+
+## 回滚 Helm Chart
+
+回滚到指定版本：
+
+```bash
+helm rollback <release-name> <revision-number>
 ```
+
+例如，回滚 `test-mysql` 到第 1 版本：
+
+```bash
 helm rollback test-mysql 1
 ```
-## 查看Helm帮助信息
-```
+
+---
+
+## 查看 Helm 帮助信息
+
+查看 Helm 的帮助信息：
+
+```bash
 helm get -h
 ```
-## 问题列表：
-1. K3s使用helm出现连接失败
-```
-# 问题异常
-Error: Kubernetes cluster unreachable: Get "http://127.0.0.1:8080/version": read tcp 127.0.0.1:45436->127.0.0.1:8080: read: connection reset by peer - error from a previous attempt: read tcp 127.0.0.1:45428->127.0.0.1:8080: read: connection reset by peer
+
+---
+
+## 常见问题及解决方案
+
+### 1. K3s 使用 Helm 出现连接失败
+
+```bash
+# 错误信息
+Error: Kubernetes cluster unreachable: Get "http://127.0.0.1:8080/version": read tcp 127.0.0.1:45436->127.0.0.1:8080: read: connection reset by peer
+
 # 解决方案：临时
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-# 解决方案：永久（推荐，否则安装chart的时候部分功能没有权限）
+
+# 解决方案：永久（推荐，否则安装 Chart 时部分功能可能没有权限）
 vi /etc/profile
 # 最后一行写入
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 # 激活
 source /etc/profile
 ```
-2. helm安装chart失败
-```
-# 问题
-[root@VM-12-11-centos k8s_yaml]# helm install --set mysqlRootPassword=test1234,mysqlDatabase=testdb,service.nodePort=32001 test-mysql aliyuncs/mysql
-WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /etc/rancher/k3s/k3s.yaml
-WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /etc/rancher/k3s/k3s.yaml
+
+---
+
+### 2. Helm 安装 Chart 失败
+
+```bash
+# 错误信息
 Error: INSTALLATION FAILED: unable to build kubernetes objects from release manifest: resource mapping not found for name: "test-mysql-mysql" namespace: "" from "": no matches for kind "Deployment" in version "extensions/v1beta1"
-# 方案
-换一个仓库的chart
+
+# 解决方案：换一个仓库的 Chart 或使用 `stable` 仓库中的 Chart
 ```
+
+---
+
+## 小结
+
+* **Helm** 是 Kubernetes 中的包管理器，便于安装、管理、升级、回滚等操作。
+* **Charts** 是 Helm 使用的包，包含 Kubernetes 资源的所有定义，支持自定义配置。
+* 通过 `helm repo` 可以管理 Helm 仓库，`helm install` 用于安装 Chart，`helm upgrade` 和 `helm rollback` 用于更新和回滚。
+* 使用 `helm uninstall` 卸载已安装的 Chart。
+* 遇到连接问题时，需要确保配置正确，尤其是 `KUBECONFIG` 环境变量的设置。
