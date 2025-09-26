@@ -116,6 +116,7 @@ nav:
       - Golang学习笔记-自定义日志轮转及输出: Golang/advanced/Golang学习笔记-自定义日志轮转及输出.md
       - Golang学习笔记-跨平台编译: Golang/advanced/Golang学习笔记-跨平台编译.md
       - Golang学习笔记-令牌桶限流: Golang/advanced/Golang学习笔记-令牌桶限流.md
+      - Golang学习笔记-go-resty: Golang/advanced/Golang学习笔记-go-resty请求.md
     - 基础:
       - Golang学习笔记-常量: Golang/tutorial/Golang学习笔记-常量.md
       - Golang学习笔记-变量: Golang/tutorial/Golang学习笔记-变量.md
