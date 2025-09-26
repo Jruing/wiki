@@ -215,6 +215,7 @@ nav:
     - Wiki.js 安装: other/Wiki.js 安装.md
     - win10右键添加复制文件绝对路径: other/win10右键添加复制文件绝对路径.md
     - 基于订阅号开发属于自己的微信消息通知: other/基于订阅号开发属于自己的微信消息通知.md
+    - rustdesk自建: other/rustdesk自建.md
     - 软件推荐: other/软件推荐.md
   - Python:
     - 高阶:
