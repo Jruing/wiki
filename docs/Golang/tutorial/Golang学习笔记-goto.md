@@ -14,10 +14,12 @@ func main() {
 	randNum := rand.Intn(20)
 	fmt.Println("当前随机数字", randNum)
 	if randNum >= 10 {
+		// 跳转到End标签
 		goto End
 	} else {
 		fmt.Println("world")
 	}
+// 声明标签
 End:
 	fmt.Println("End")
 }
