@@ -104,6 +104,13 @@ nav:
       - Vue3 Router路由: front/Vue/Vue3 Router路由.md
       - Vue3+Vite项目基础环境搭建: front/Vue/Vue3+Vite项目基础环境搭建.md
   - Golang:
+    - 基础:
+        - Golang学习笔记-常量: Golang/tutorial/Golang学习笔记-常量.md
+        - Golang学习笔记-变量: Golang/tutorial/Golang学习笔记-变量.md
+        - Golang学习笔记-判断: Golang/tutorial/Golang学习笔记-判断.md
+        - Golang学习笔记-循环: Golang/tutorial/Golang学习笔记-循环.md
+        - Golang学习笔记-数据类型: Golang/tutorial/Golang学习笔记-数据类型.md
+        - Golang学习笔记-goto: Golang/tutorial/Golang学习笔记-goto.md
     - 高阶:
       - Golang 学习笔记-sqlc 代码生成: Golang/advanced/Golang 学习笔记-sqlc 代码生成.md
       - Golang 学习笔记-Viper: Golang/advanced/Golang 学习笔记-Viper.md
@@ -117,13 +124,6 @@ nav:
       - Golang学习笔记-跨平台编译: Golang/advanced/Golang学习笔记-跨平台编译.md
       - Golang学习笔记-令牌桶限流: Golang/advanced/Golang学习笔记-令牌桶限流.md
       - Golang学习笔记-go-resty: Golang/advanced/Golang学习笔记-go-resty请求.md
-    - 基础:
-      - Golang学习笔记-常量: Golang/tutorial/Golang学习笔记-常量.md
-      - Golang学习笔记-变量: Golang/tutorial/Golang学习笔记-变量.md
-      - Golang学习笔记-判断: Golang/tutorial/Golang学习笔记-判断.md
-      - Golang学习笔记-循环: Golang/tutorial/Golang学习笔记-循环.md
-      - Golang学习笔记-数据类型: Golang/tutorial/Golang学习笔记-数据类型.md
-      - Golang学习笔记-goto: Golang/tutorial/Golang学习笔记-goto.md
   - 云原生:
     - docker:
       - Docker学习笔记-在线安装教程: kubernetes/docker/Docker学习笔记-在线安装教程.md
@@ -219,6 +219,16 @@ nav:
     - rustdesk自建: other/rustdesk自建.md
     - 软件推荐: other/软件推荐.md
   - Python:
+
+    - 基础:
+      - 函数: Python/tutorial/函数.md
+      - 判断: Python/tutorial/判断.md
+      - 安装环境: Python/tutorial/安装环境.md
+      - 异常处理: Python/tutorial/异常处理.md
+      - 循环: Python/tutorial/循环.md
+      - 数据类型: Python/tutorial/数据类型.md
+      - 模块: Python/tutorial/模块.md
+      - 类: Python/tutorial/类.md
     - 高阶:
       - Python学习笔记-grpc: Python/advanced/Python学习笔记-grpc.md
       - Python学习笔记-property和setter: Python/advanced/Python学习笔记-property和setter.md
@@ -236,22 +246,13 @@ nav:
       - Python学习笔记-调用dll: Python/advanced/Python学习笔记-调用dll.md
       - Python学习笔记-struct处理二进制数据: Python/advanced/Python学习笔记-struct处理二进制数据.md
       - Python学习笔记-gc垃圾回收: Python/advanced/Python学习笔记-gc垃圾回收.md
-    - 其他:
-      - Apscheduler 使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
-      - 利用Cython对python代码进行加密: Python/other/利用Cython对python代码进行加密.md
-      - 解决Pandas安装缺少_bz2模块: Python/other/解决Pandas安装缺少_bz2模块.md
     - 爬虫:
       - JsRpc练习: Python/Spider/JsRpc练习.md
       - Python selenium过图片滑块验证: Python/Spider/Python selenium过图片滑块验证.md
       - Python爬虫-无限VM debugger解决方案: Python/Spider/Python爬虫-无限VM debugger解决方案.md
       - 有道翻译爬虫: Python/Spider/有道翻译爬虫.md
       - 某验五子棋验证码: Python/Spider/某验五子棋验证码.md
-    - 基础:
-      - 函数: Python/tutorial/函数.md
-      - 判断: Python/tutorial/判断.md
-      - 安装环境: Python/tutorial/安装环境.md
-      - 异常处理: Python/tutorial/异常处理.md
-      - 循环: Python/tutorial/循环.md
-      - 数据类型: Python/tutorial/数据类型.md
-      - 模块: Python/tutorial/模块.md
-      - 类: Python/tutorial/类.md
+    - 其他:
+        - Apscheduler 使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
+        - 利用Cython对python代码进行加密: Python/other/利用Cython对python代码进行加密.md
+        - 解决Pandas安装缺少_bz2模块: Python/other/解决Pandas安装缺少_bz2模块.md
