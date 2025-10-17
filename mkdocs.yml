@@ -123,6 +123,7 @@ nav:
       - Golang学习笔记-判断: Golang/tutorial/Golang学习笔记-判断.md
       - Golang学习笔记-循环: Golang/tutorial/Golang学习笔记-循环.md
       - Golang学习笔记-数据类型: Golang/tutorial/Golang学习笔记-数据类型.md
+      - Golang学习笔记-goto: Golang/tutorial/Golang学习笔记-goto.md
   - 云原生:
     - docker:
       - Docker学习笔记-在线安装教程: kubernetes/docker/Docker学习笔记-在线安装教程.md
