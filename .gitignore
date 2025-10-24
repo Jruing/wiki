@@ -7,6 +7,9 @@ wheels/
 *.egg-info
 .idea
 .vscode
+*.iml
+*.ipr
+*.iws
 
 # Virtual environments
 .venv
