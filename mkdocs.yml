@@ -92,14 +92,14 @@ nav:
     - Javascript学习笔记-js实现拷贝复制功能: front/Javascript学习笔记-js实现拷贝复制功能.md
     - js控制台Hook: front/js控制台Hook.md
     - React:
-      - React-JSX: front/React/React-JSX.md
-      - React-Props传递给组件: front/React/React-Props传递给组件.md
-      - React-列表渲染: front/React/React-列表渲染.md
-      - React-响应事件: front/React/React-响应事件.md
       - React-安装: front/React/React-安装.md
       - React-数据展示: front/React/React-数据展示.md
       - React-更新页面数据: front/React/React-更新页面数据.md
       - React-条件判断: front/React/React-条件判断.md
+      - React-JSX: front/React/React-JSX.md
+      - React-Props传递给组件: front/React/React-Props传递给组件.md
+      - React-列表渲染: front/React/React-列表渲染.md
+      - React-响应事件: front/React/React-响应事件.md
     - Vue:
       - Vue3 Router路由: front/Vue/Vue3 Router路由.md
       - Vue3+Vite项目基础环境搭建: front/Vue/Vue3+Vite项目基础环境搭建.md
@@ -252,6 +252,7 @@ nav:
       - Python爬虫-无限VM debugger解决方案: Python/Spider/Python爬虫-无限VM debugger解决方案.md
       - 有道翻译爬虫: Python/Spider/有道翻译爬虫.md
       - 某验五子棋验证码: Python/Spider/某验五子棋验证码.md
+      - playwrigth防自动化特征检测: Python/Spider/playwright防自动化检测.md
     - 其他:
         - Apscheduler 使用Redis集群做为任务存储: Python/other/Apscheduler 使用Redis集群做为任务存储.md
         - 利用Cython对python代码进行加密: Python/other/利用Cython对python代码进行加密.md
