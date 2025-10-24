@@ -1,0 +1,2453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/kubernetes/k8s/kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%90%AD%E5%BB%BAK3s%E9%9B%86%E7%BE%A4.html">
+      
+      
+        <link rel="prev" href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-helm.html">
+      
+      
+        <link rel="next" href="../../Linux/caddy/caddy%E7%AE%80%E4%BB%8B.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>kubernetes学习笔记-搭建K3s集群 - Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wiki" class="md-header__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              kubernetes学习笔记-搭建K3s集群
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jruing/wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jruing/wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  简介
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../AI/AIAgent/AnythingLLM%2BOllama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  自动化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../database/mysql/Mysql57%E7%BB%BF%E8%89%B2%E7%89%88%E5%AE%89%E8%A3%85.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  数据库
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../front/fetch%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  前端
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Golang/tutorial/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E9%87%8F.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Golang
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../docker/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  云原生
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Linux/caddy/caddy%E7%AE%80%E4%BB%8B.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other/Frp%20%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%90%AD%E5%BB%BA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Python/tutorial/%E5%87%BD%E6%95%B0.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wiki" class="md-nav__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jruing/wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jruing/wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../AI/AIAgent/AnythingLLM%2BOllama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    AI
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    自动化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../database/mysql/Mysql57%E7%BB%BF%E8%89%B2%E7%89%88%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    数据库
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../front/fetch%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    前端
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Golang/tutorial/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E9%87%8F.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Golang
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    云原生
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            云原生
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../docker/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    docker
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    k8s
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            k8s
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Pod.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-Pod
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-namespace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-NameSpace
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-ReplicaSet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-ReplicaSet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Service.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-ConfigMap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-ConfigMap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Ingress.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-Ingress
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-helm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-搭建K3s集群
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%90%AD%E5%BB%BAK3s%E9%9B%86%E7%BE%A4.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    kubernetes学习笔记-搭建K3s集群
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础环境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装K3s集群
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      卸载K3s集群
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      节点加入集群
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像加速
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploymentreplicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment与ReplicaSet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      NameSpace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过声明式对象配置
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Linux/caddy/caddy%E7%AE%80%E4%BB%8B.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../other/Frp%20%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    其他
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Python/tutorial/%E5%87%BD%E6%95%B0.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础环境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装K3s集群
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      卸载K3s集群
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      节点加入集群
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像加速
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploymentreplicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment与ReplicaSet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      NameSpace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过声明式对象配置
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/jruing/wiki/edit/master/docs/kubernetes/k8s/kubernetes学习笔记-搭建K3s集群.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="kubernetes">kubernetes学习笔记</h1>
+<h2 id="_1">基础环境</h2>
+<blockquote>
+<p>系统镜像版本</p>
+<ul>
+<li>Centos 7.6 最小化</li>
+</ul>
+<p>最低运行环境基本要求</p>
+<ul>
+<li>内存及CPU：512MB / CPU 1核</li>
+</ul>
+<p>K3s版本</p>
+<ul>
+<li>v1.30.0+k3s1</li>
+</ul>
+<p>集群规划:</p>
+<p><code>注意</code>：需要对每台主机设置<code>hostname</code>,使用<code>hostnamectl set-hostname 主机名</code></p>
+<ul>
+<li>K8s-master   192.168.200.129 1C/1G</li>
+<li>K8s-worker1 192.168.200.130 2C/2G</li>
+<li>K8s-worker2 192.168.200.131 2C/2G</li>
+</ul>
+</blockquote>
+<h2 id="_2">准备工作</h2>
+<ol>
+<li>关闭防火墙</li>
+</ol>
+<p><code>systemctl disable firewalld --now</code></p>
+<ol>
+<li>设置Selinux(需要接入互联网)</li>
+</ol>
+<p><code>yum install -y container-selinux selinux-policy-base
+yum install -y https://rpm.rancher.io/k3s/latest/common/centos/7/noarch/k3s-selinux-0.2-1.el7_8.noarch.rpm</code></p>
+<ol>
+<li>免密登录</li>
+</ol>
+<pre><code>ssh-keygen -t rsa
+ssh-copy-id -i /root/.ssh/id_rsa.pub 192.168.200.130
+ssh-copy-id -i /root/.ssh/id_rsa.pub 192.168.200.131
+</code></pre>
+<h2 id="k3s">安装K3s集群</h2>
+<blockquote>
+<p>K3s集群分为<code>K3s server</code>（控制平面） 及 <code>k3s agent</code> （工作节点）</p>
+</blockquote>
+<ul>
+<li>在<code>k8s-master</code> 节点安装<code>k3s server</code></li>
+</ul>
+<pre><code class="language-shell">curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn sh -
+</code></pre>
+<h2 id="k3s_1">卸载K3s集群</h2>
+<pre><code>k3s-uninstall.sh
+</code></pre>
+<h2 id="_3">验证安装</h2>
+<ul>
+<li>查看节点状态 <code>kubectl get node</code></li>
+</ul>
+<pre><code>[root@localhost ~]# kubectl get node
+NAME         STATUS   ROLES                  AGE   VERSION
+k8s-master   Ready    control-plane,master   16s   v1.30.4+k3s1
+</code></pre>
+<ul>
+<li>查看token <code>cat /var/lib/rancher/k3s/server/node-token</code></li>
+</ul>
+<blockquote>
+<p>这个token用于<code>K8s-worker1</code>和<code>K8s-worker2</code>这两个节点加入集群</p>
+</blockquote>
+<pre><code>[root@localhost ~]# cat /var/lib/rancher/k3s/server/node-token
+K103b59c9e5e4a8904ad2f4ba0dc2fc17079af59e8cd3f8f7c51f5a42d62a373eb0::server:e2b46796a195fe2a86de36c54855802e
+</code></pre>
+<h2 id="_4">节点加入集群</h2>
+<blockquote>
+<p>分别在<code>k8s-worker1</code> 和 <code>k8s-worker2</code> 两台主机分别执行以下命令</p>
+</blockquote>
+<pre><code>curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn K3S_URL=https://192.168.200.129:6443 K3S_TOKEN=K103b59c9e5e4a8904ad2f4ba0dc2fc17079af59e8cd3f8f7c51f5a42d62a373eb0::server:e2b46796a195fe2a86de36c54855802e sh -
+</code></pre>
+<blockquote>
+<p>在<code>k8s-master</code>节点执行<code>kubectl get node</code>，可以看到<code>k8s-worker1</code> 和 <code>k8s-worker2</code> 已经加入集群</p>
+</blockquote>
+<pre><code>[root@k8s-master ~]# kubectl get node
+NAME          STATUS   ROLES                  AGE     VERSION
+k8s-master    Ready    control-plane,master   57m     v1.30.4+k3s1
+k8s-worker1   Ready    &lt;none&gt;                 4m46s   v1.30.4+k3s1
+k8s-worker2   Ready    &lt;none&gt;                 3m33s   v1.30.4+k3s1
+</code></pre>
+<h2 id="_5">镜像加速</h2>
+<ol>
+<li><code>k8s-master</code>节点添加镜像加速配置文件 <code>/etc/rancher/k3s/registries.yaml</code></li>
+</ol>
+<pre><code>mirrors:
+  docker.io:
+    endpoint:
+      - &quot;https://hub.uuuadc.top&quot;
+      - &quot;https://docker.anyhub.us.kg&quot;
+      - &quot;https://dockerhub.jobcher.com&quot;
+      - &quot;https://dockerhub.icu&quot;
+      - &quot;https://docker.ckyl.me&quot;
+      - &quot;https://docker.awsl9527.cn&quot;
+</code></pre>
+<ol>
+<li>分发到<code>k8s-worker1</code> 和 <code>k8s-worker2</code> </li>
+</ol>
+<pre><code>scp /etc/rancher/k3s/registries.yaml root@192.168.200.130:/etc/rancher/k3s/registries.yaml
+scp /etc/rancher/k3s/registries.yaml root@192.168.200.131:/etc/rancher/k3s/registries.yaml
+</code></pre>
+<ol>
+<li>重启<code>k3s-server</code>及<code>k3s-agent</code></li>
+</ol>
+<pre><code># 在k8s-master节点执行
+systemctl restart k3s
+# 在k8s-worker1和k8s-worker2节点执行
+systemctl restart k3s-agent
+</code></pre>
+<ol>
+<li>验证</li>
+</ol>
+<pre><code># 拉取mysql镜像
+[root@k8s-master ~]# crictl pull mysql:5.7-debian
+Image is up to date for sha256:6dca1336186922918678a49811059c4f6bfa1759d853a4e7cde904879d2e9b83
+# 查看镜像列表
+[root@k8s-master ~]# crictl  images
+IMAGE                     TAG                 IMAGE ID            SIZE
+docker.io/library/mysql   5.7-debian          6dca133618692       163MB
+</code></pre>
+<p>## Pod</p>
+<ul>
+<li>创建Pod资源 <code>kubectl run</code></li>
+</ul>
+<pre><code># 创建一个名称为 mynginx，镜像为 nginx 的Pod
+[root@k8s-master ~]# kubectl run mynginx --image=nginx
+pod/mynginx created
+</code></pre>
+<ul>
+<li>查看Pod <code>kubectl get pod</code></li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl get pod
+NAME      READY   STATUS    RESTARTS   AGE
+mynginx   1/1     Running   0          11m
+# 显示pod的IP和运行节点信息
+[root@k8s-master ~]# kubectl get pod -owide
+NAME      READY   STATUS    RESTARTS   AGE     IP          NODE          NOMINATED NODE   READINESS GATES
+mynginx   1/1     Running   0          4m40s   10.42.2.3   k8s-worker2   &lt;none&gt;           &lt;none&gt;
+</code></pre>
+<ul>
+<li>查看Pod运行日志 <code>kubectl logs</code></li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl logs mynginx
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2024/08/24 05:50:48 [notice] 1#1: using the &quot;epoll&quot; event method
+2024/08/24 05:50:48 [notice] 1#1: nginx/1.27.1
+2024/08/24 05:50:48 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/08/24 05:50:48 [notice] 1#1: OS: Linux 3.10.0-1160.el7.x86_64
+2024/08/24 05:50:48 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/08/24 05:50:48 [notice] 1#1: start worker processes
+2024/08/24 05:50:48 [notice] 1#1: start worker process 29
+2024/08/24 05:50:48 [notice] 1#1: start worker process 30
+2024/08/24 05:50:48 [notice] 1#1: start worker process 31
+2024/08/24 05:50:48 [notice] 1#1: start worker process 32
+10.42.0.0 - - [24/Aug/2024:05:51:59 +0000] &quot;GET / HTTP/1.1&quot; 200 615 &quot;-&quot; &quot;curl/7.29.0&quot; &quot;-&quot;
+</code></pre>
+<ul>
+<li>查看Pod详细信息</li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl describe pod mynginx
+Name:             mynginx
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             k8s-worker2/192.168.200.131
+Start Time:       Sat, 24 Aug 2024 13:46:18 +0800
+Labels:           run=mynginx
+Annotations:      &lt;none&gt;
+Status:           Pending
+IP:               
+IPs:              &lt;none&gt;
+Containers:
+  mynginx:
+    Container ID:   
+    Image:          nginx
+    Image ID:       
+    Port:           &lt;none&gt;
+    Host Port:      &lt;none&gt;
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-w4xqw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-w4xqw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              &lt;none&gt;
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  13s   default-scheduler  Successfully assigned default/mynginx to k8s-worker2
+</code></pre>
+<ul>
+<li>在容器中执行命令 <code>kubectl exec</code></li>
+</ul>
+<pre><code>kubectl exec mynginx -it -- /bin/bash
+</code></pre>
+<ul>
+<li>删除Pod <code>kubectl delete</code></li>
+</ul>
+<pre><code># 删除Pod
+kubectl delete pod mynginx
+# 强制删除
+kubectl delete pod mynginx --force
+</code></pre>
+<h2 id="deploymentreplicaset">Deployment与ReplicaSet</h2>
+<blockquote>
+<ul>
+<li>Deployment使Pod具有自愈的能力，当我们删除Deployment中的一个或多个pod后，他会自动创建Pod直到与副本数量一致</li>
+<li>Deployment使Pod具有滚动更新及版本回退的能力</li>
+</ul>
+</blockquote>
+<ul>
+<li>创建Deployment <code>kubectl create deployment</code></li>
+</ul>
+<pre><code># 创建一个deployment资源，名称为nginx-deployment，镜像为nginx:1.22 ，副本数量为3
+[root@k8s-master ~]# kubectl create deployment nginx-deployment --image=nginx:1.22 --replicas=3
+deployment.apps/nginx-deployment created
+</code></pre>
+<ul>
+<li>查看Deployment</li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl get deploy 
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3/3     3            3           5m9s
+</code></pre>
+<ul>
+<li>查看Pod</li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl get pod
+NAME                                READY   STATUS    RESTARTS   AGE
+mynginx                             1/1     Running   0          28m
+nginx-deployment-645dcd4477-87twt   1/1     Running   0          5m58s
+nginx-deployment-645dcd4477-9xb9p   1/1     Running   0          5m58s
+nginx-deployment-645dcd4477-j9xt8   1/1     Running   0          5m58s
+</code></pre>
+<ul>
+<li>查看Deployment的副本数量 <code>kubectl get replicaSet</code></li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl get replicaSet
+NAME                          DESIRED   CURRENT   READY   AGE
+nginx-deployment-645dcd4477   3         3         3       6m36s
+</code></pre>
+<ul>
+<li>手动扩缩容 <code>kubectl scale deploy 资源名称 --replicas=数量</code></li>
+</ul>
+<pre><code># 将deployment/nginx-deployment的副本集扩充到5个
+[root@k8s-master ~]# kubectl scale deployment/nginx-deployment --replicas=5
+deployment.apps/nginx-deployment scaled
+# 查看扩缩后的Pod
+[root@k8s-master ~]# kubectl get pod
+NAME                                READY   STATUS    RESTARTS   AGE
+mynginx                             1/1     Running   0          36m
+nginx-deployment-645dcd4477-87twt   1/1     Running   0          13m
+nginx-deployment-645dcd4477-9xb9p   1/1     Running   0          13m
+nginx-deployment-645dcd4477-df828   1/1     Running   0          19s
+nginx-deployment-645dcd4477-j9xt8   1/1     Running   0          13m
+nginx-deployment-645dcd4477-t4cw5   1/1     Running   0          19s
+</code></pre>
+<ul>
+<li>自动扩缩容 <code>kubectl autoscale 资源名称 --min=最小pod数 --max=最大pod数 扩缩容条件</code></li>
+</ul>
+<blockquote>
+<p>扩缩容条件参考：https://github.com/kubernetes-sigs/metrics-server#readme</p>
+</blockquote>
+<pre><code>#自动缩放，设置deployment/nginx-deployment为自动扩缩容，最小数量为3个pod，最大为10个pod，扩缩容的条件是所有pod的平均cpu使用率不超过75%
+[root@k8s-master ~]# kubectl autoscale deployment/nginx-deployment --min=3 --max=10 --cpu-percent=75 
+horizontalpodautoscaler.autoscaling/nginx-deployment autoscaled
+</code></pre>
+<ul>
+<li>滚动更新</li>
+</ul>
+<blockquote>
+<p>注意：在滚动更新的过程中会出现新旧服务共存在的状态</p>
+</blockquote>
+<pre><code># 设定deployment/nginx-deployment的镜像为nginx:1.23版本
+[root@k8s-master ~]# kubectl set image deployment/nginx-deployment nginx=nginx:1.23
+deployment.apps/nginx-deployment image updated
+#滚动更新状态
+kubectl rollout status deployment/nginx-deployment
+#查看过程
+kubectl get rs --watch
+</code></pre>
+<ul>
+<li>查看历史版本 <code>kubectl rollout history</code></li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl rollout history deployment/nginx-deployment
+deployment.apps/nginx-deployment 
+REVISION  CHANGE-CAUSE
+1         &lt;none&gt;
+2         &lt;none&gt;
+</code></pre>
+<ul>
+<li>查看指定版本 <code>kubectl rollout history deployment资源名称 --revision=版本号</code></li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl rollout history deployment/nginx-deployment --revision=2
+deployment.apps/nginx-deployment with revision #2
+Pod Template:
+  Labels:   app=nginx-deployment
+  pod-template-hash=5cf4667cdb
+  Containers:
+    nginx:
+    Image:  nginx:1.23
+    Port:   &lt;none&gt;
+    Host Port:  &lt;none&gt;
+    Environment:    &lt;none&gt;
+    Mounts: &lt;none&gt;
+  Volumes:  &lt;none&gt;
+  Node-Selectors:   &lt;none&gt;
+  Tolerations:  &lt;none&gt;
+</code></pre>
+<ul>
+<li>回滚到历史版本 <code>kubectl rollout undo deployment资源名称 --to-revision=版本号</code></li>
+</ul>
+<pre><code>[root@k8s-master ~]# kubectl rollout undo deployment/nginx-deployment --to-revision=1
+deployment.apps/nginx-deployment rolled back
+</code></pre>
+<h2 id="service">Service</h2>
+<blockquote>
+<p>Service会将将运行在一组Pod上的应用公开为网络服务，并为该组Pod提供相同的DNS名称，进行负载均衡。Kubernetes 为 Pod 提供分配了IP 地址，但IP地址可能会发生变化。Service会使集群内的容器可以通过service名称访问服务，而不需要担心Pod的IP发生变化。</p>
+</blockquote>
+<p><img alt="image.png" src="https://jruing-blogs.oss-cn-beijing.aliyuncs.com/blogs/202408241519868.png" /></p>
+<ul>
+<li>创建Service资源</li>
+</ul>
+<blockquote>
+<p>ServiceType 取值</p>
+<ul>
+<li>ClusterIP：将服务公开在集群内部。kubernetes会给服务分配一个集群内部的 IP，集群内的所有主机都可以通过这个Cluster-IP访问服务。集群内部的Pod可以通过service名称访问服务。</li>
+<li><a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#type-nodeport">NodePort</a>：通过每个节点的主机IP 和静态端口（NodePort）暴露服务。 集群的外部主机可以使用节点IP和NodePort访问服务。</li>
+<li><a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#externalname">ExternalName</a>：将集群外部的网络引入集群内部。</li>
+<li><a href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/#loadbalancer">LoadBalancer</a>：使用云提供商的负载均衡器向外部暴露服务。 </li>
+</ul>
+</blockquote>
+<p>```
+  # 创建一个名称为nginx-service的Service，使用的资源为deployment/nginx-deployment，集群内部暴露的端口为8080，目标端口为80,这个服务只能在集群内部访问，无法在外部访问
+  [root@k8s-master ~]#  kubectl expose deployment/nginx-deployment --name nginx-service --port=8080 --target-port=80
+  service/nginx-service exposed</p>
+<p># 创建一个名称为nginx-service的Service，使用的资源为deployment/nginx-deployment，对外暴露的端口为8081，目标端口为80
+  [root@k8s-master ~]# kubectl expose deployment/nginx-deployment --name=nginx-outside --type=NodePort --port=8081 --target-port=80
+  service/nginx-outside exposed
+  ```</p>
+<ul>
+<li>查看Service <code>kubectl get service</code></li>
+</ul>
+<p>```
+  # nginx-outside暴露了两个端口，8081是集群内部访问的端口，31606是外部访问的端口（http://192.168.200.129:31606）
+  [root@k8s-master ~]# kubectl get service
+  NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+  kubernetes      ClusterIP   10.43.0.1      <none>        443/TCP    178m
+  nginx-outside   NodePort    10.43.151.51   <none>        8081:31606/TCP   7s
+  nginx-service   ClusterIP   10.43.21.154   <none>        8080/TCP   2m41s</p>
+<p># 通过集群分配的ip+端口访问服务
+  [root@k8s-master ~]# curl 10.43.21.154:8080
+  <!DOCTYPE html></p>
+<html>
+  <head>
+  <title>Welcome to nginx!</title>
+  <style>
+  html { color-scheme: light dark; }
+  body { width: 35em; margin: 0 auto;
+  font-family: Tahoma, Verdana, Arial, sans-serif; }
+  </style>
+  </head>
+  <body>
+  <h1>Welcome to nginx!</h1>
+  <p>If you see this page, the nginx web server is successfully installed and
+  working. Further configuration is required.</p>
+
+  <p>For online documentation and support please refer to
+  <a href="http://nginx.org/">nginx.org</a>.<br/>
+  Commercial support is available at
+  <a href="http://nginx.com/">nginx.com</a>.</p>
+
+  <p><em>Thank you for using nginx.</em></p>
+  </body>
+  </html>
+
+<p># 通过--rm参数创建一个一次性的pod(退出pod后会自动销毁)
+  [root@k8s-master ~]# kubectl run test -it --image=nginx:1.22 --rm -- bash
+  If you don't see a command prompt, try pressing enter.</p>
+<p># 通过服务名称+端口进行访问
+  root@test:/# curl nginx-service:8080
+  <!DOCTYPE html></p>
+<html>
+  <head>
+  <title>Welcome to nginx!</title>
+  <style>
+  html { color-scheme: light dark; }
+  body { width: 35em; margin: 0 auto;
+  font-family: Tahoma, Verdana, Arial, sans-serif; }
+  </style>
+  </head>
+  <body>
+  <h1>Welcome to nginx!</h1>
+  <p>If you see this page, the nginx web server is successfully installed and
+  working. Further configuration is required.</p>
+
+  <p>For online documentation and support please refer to
+  <a href="http://nginx.org/">nginx.org</a>.<br/>
+  Commercial support is available at
+  <a href="http://nginx.com/">nginx.com</a>.</p>
+
+  <p><em>Thank you for using nginx.</em></p>
+  </body>
+  </html>
+<p>```</p>
+<ul>
+<li>查看service详细信息 <code>kubectl describe service 服务名称</code></li>
+</ul>
+<p><code>[root@k8s-master ~]# kubectl describe service nginx-service
+  Name:              nginx-service
+  Namespace:         default
+  Labels:            app=nginx-deployment
+  Annotations:       &lt;none&gt;
+  Selector:          app=nginx-deployment
+  Type:              ClusterIP
+  IP Family Policy:  SingleStack
+  IP Families:       IPv4
+  IP:                10.43.21.154
+  IPs:               10.43.21.154
+  Port:              &lt;unset&gt;  8080/TCP
+  TargetPort:        80/TCP
+  Endpoints:         10.42.0.11:80,10.42.1.8:80,10.42.1.9:80 + 2 more... # 负载均衡端点
+  Session Affinity:  None
+  Events:            &lt;none&gt;</code></p>
+<h2 id="namespace">NameSpace</h2>
+<ul>
+<li>查看命名空间 <code>kubectl get namespace</code></li>
+</ul>
+<blockquote>
+<ul>
+<li><code>default</code> 默认的命名空间，不可删除，未指定命名空间的对象都会被分配到default中。</li>
+<li><code>kube-system</code> Kubernetes 系统对象(控制平面和Node组件)所使用的命名空间。</li>
+<li><code>kube-public</code> 自动创建的公共命名空间，所有用户（包括未经过身份验证的用户）都可以读取它。通常我们约定，将整个集群中公用的可见和可读的资源放在这个空间中。 </li>
+<li><code>kube-node-lease</code>  <a href="https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/lease-v1/">租约（Lease）</a>对象使用的命名空间。每个节点都有一个关联的 lease 对象，lease 是一种轻量级资源。lease对象通过发送<a href="https://kubernetes.io/zh-cn/docs/concepts/architecture/nodes/#heartbeats">心跳</a>，检测集群中的每个节点是否发生故障。</li>
+</ul>
+</blockquote>
+<p><code>[root@k8s-master ~]# kubectl get namespace
+  NAME              STATUS   AGE
+  default           Active   3h19m
+  kube-node-lease   Active   3h19m
+  kube-public       Active   3h19m
+  kube-system       Active   3h19m</code></p>
+<ul>
+<li>创建命名空间 <code>kubectl create namespace dev</code></li>
+</ul>
+<blockquote>
+<p>在创建Pod的时候可以使用 -n  参数指定命名空间</p>
+</blockquote>
+<p><code>[root@k8s-master ~]# kubectl create namespace dev
+  namespace/dev created</code></p>
+<ul>
+<li>
+<p>删除命名空间</p>
+<blockquote>
+<p>删除命名空间时会同步删除该命名空间下的资源</p>
+</blockquote>
+<p><code>[root@k8s-master ~]# kubectl delete namespace dev
+namespace "dev" deleted</code></p>
+</li>
+<li>
+<p>将dev设为当前命名空间，后续所有操作都在此命名空间下执行。</p>
+</li>
+</ul>
+<p><code>kubectl config set-context $(kubectl config current-context) --namespace=dev</code></p>
+<h2 id="_6">通过声明式对象配置</h2>
+<ul>
+<li>
+<p>配置对象</p>
+<p>在创建的 Kubernetes 对象所对应的 <code>yaml</code>文件中，需要配置的字段如下：</p>
+<ul>
+<li><code>apiVersion</code> -  Kubernetes API 的版本</li>
+<li><code>kind</code> - 对象类别，例如<code>Pod</code>、<code>Deployment</code>、<code>Service</code>、<code>ReplicaSet</code>等</li>
+<li><code>metadata</code> - 描述对象的元数据，包括一个 name 字符串、UID 和可选的 namespace</li>
+<li><code>spec</code> - 对象的配置</li>
+</ul>
+</li>
+<li>
+<p>栗子</p>
+</li>
+</ul>
+<blockquote>
+<p>这个配置文件中的Pod资源通常不需要单独定义，因为Pod将由Deployment自动创建和管理。Pod资源在这里是为了演示配置文件的结构，但在实际使用中，Deployment足以管理Pod的生命周期。</p>
+</blockquote>
+<pre><code class="language-yaml">apiVersion: v1 # api版本信息
+kind: Pod # 资源类型
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: proxy # 定义一个key为name，value为proxy的标签
+spec:
+  containers: # 下面为运行的容器列表
+  - name: nginx # 容器名称
+    image: nginx:1.22 # 镜像名称及版本号
+    ports:
+      - containerPort: 80 # 容器内部监听的端口
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-demo # deployment资源名称
+  labels:
+    app: nginx  # 定义一个key为app，value为nginx的标签
+spec:
+  replicas: 3 # 指定副本数量为3个
+  selector:
+    matchLabels:
+      app: nginx # 匹配标签key为app，value为nginx的所有资源
+  template:
+    metadata:
+      labels:
+        app: nginx # 定义一个key为app，value为nginx的标签
+    spec:
+      containers: # 下面为运行的容器列表
+      - name: nginx # 容器名称
+        image: nginx:1.22 # 镜像名称及版本号
+        ports:
+        - containerPort: 80 # 容器内部监听的端口
+---
+apiVersion: v1
+kind: Service # 资源类型
+metadata:
+  name: nginx-service-demo # 定义服务名称
+spec:
+  selector:
+    app: nginx # 匹配标签key为app，value为nginx的所有资源
+  ports:
+    - name: nginx-out-side 
+      port: 80 # 集群内部暴露的端口
+      nodePort: 31009 # 对外暴露的端口
+      targetPort: 80 # 目标端口
+  type: NodePort # 指定服务类型
+</code></pre>
+<ul>
+<li>通过配置文件创建Pod</li>
+</ul>
+<pre><code>kubectl apply -f my-nginx.yaml
+</code></pre>
+<ul>
+<li>通过配置文件删除Pod</li>
+</ul>
+<pre><code>kubectl delete -f my-nginx.yaml
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="kubernetes%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-helm.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: kubernetes学习笔记-helm">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                kubernetes学习笔记-helm
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Linux/caddy/caddy%E7%AE%80%E4%BB%8B.html" class="md-footer__link md-footer__link--next" aria-label="Next: caddy简介">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                caddy简介
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.tabs.sections", "navigation.expand", "navigation.path", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "navigation.prune"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

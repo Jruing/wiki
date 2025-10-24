@@ -1,0 +1,2542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/Linux/monitor/%E5%9F%BA%E4%BA%8EGrafana%2BLoki%2BPromatil%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0.html">
+      
+      
+        <link rel="prev" href="Uptime-kuma%20%E7%9B%91%E6%8E%A7.html">
+      
+      
+        <link rel="next" href="../nginx/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-auth_basic%E8%AE%A4%E8%AF%81.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>基于Grafana+Loki+Promatil搭建日志分析平台 - Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#grafanalokipromatil" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wiki" class="md-header__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              基于Grafana+Loki+Promatil搭建日志分析平台
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jruing/wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jruing/wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  简介
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../AI/AIAgent/AnythingLLM%2BOllama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  自动化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../database/mysql/Mysql57%E7%BB%BF%E8%89%B2%E7%89%88%E5%AE%89%E8%A3%85.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  数据库
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../front/fetch%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  前端
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Golang/tutorial/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E9%87%8F.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Golang
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/docker/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  云原生
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../caddy/caddy%E7%AE%80%E4%BB%8B.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other/Frp%20%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%90%AD%E5%BB%BA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Python/tutorial/%E5%87%BD%E6%95%B0.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wiki" class="md-nav__button md-logo" aria-label="Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jruing/wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jruing/wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../AI/AIAgent/AnythingLLM%2BOllama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    AI
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../automation/Selenium%E6%8E%A5%E7%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    自动化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../database/mysql/Mysql57%E7%BB%BF%E8%89%B2%E7%89%88%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    数据库
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../front/fetch%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    前端
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Golang/tutorial/Golang%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E9%87%8F.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Golang
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../kubernetes/docker/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    云原生
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../caddy/caddy%E7%AE%80%E4%BB%8B.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    caddy
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    monitor
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            monitor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Uptime-kuma%20%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Uptime-kuma 监控
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    基于Grafana+Loki+Promatil搭建日志分析平台
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E5%9F%BA%E4%BA%8EGrafana%2BLoki%2BPromatil%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    基于Grafana+Loki+Promatil搭建日志分析平台
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      简介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      环境准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grafana安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案1(推荐):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案2:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动服务:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置Grafana
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loki" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loki安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Loki安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loki_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载Loki
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loki_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loki配置文件调整
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promtail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Promtail安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Promtail安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promtail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载Promtail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promtail_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Promtail配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../nginx/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-auth_basic%E8%AE%A4%E8%AF%81.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    nginx
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../other/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-awk.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    other
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../Prometheus/Prometheus%E7%AC%94%E8%AE%B0-%E5%AE%89%E8%A3%85.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Prometheus
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../serverless/ServerLess%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%90%AD%E5%BB%BAFN%E7%A4%BA%E4%BE%8B.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    serverless
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../other/Frp%20%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%90%AD%E5%BB%BA.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    其他
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../Python/tutorial/%E5%87%BD%E6%95%B0.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      简介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      环境准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grafana安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案1(推荐):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案2:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动服务:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置Grafana
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loki" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loki安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Loki安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loki_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载Loki
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loki_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loki配置文件调整
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promtail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Promtail安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Promtail安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promtail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载Promtail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promtail_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Promtail配置文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/jruing/wiki/edit/master/docs/Linux/monitor/基于Grafana+Loki+Promatil搭建日志分析平台.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="grafanalokipromatil">基于Grafana+Loki+Promatil搭建日志分析平台</h1>
+<h2 id="_1">简介</h2>
+<blockquote>
+<p>背景:</p>
+<p>有很多厂商都用ELK(Elasticsearch+Logstash+Kibana)进行日志分析,ELK的用户体验确实很好,同时对于服务器的配置要求也不低,如果公司的项目规模不是很大,可以考虑考虑用GLP(Grafana+Loki+Promatil),GLP对服务器的要求没有ELK那么高,同时它部署起来也比ELK方便</p>
+<p>ELK与Loki的优缺点(参考https://blog.csdn.net/gjjhyd/article/details/113624596):</p>
+<p><img alt="" src="https://jruing-blogs.oss-cn-beijing.aliyuncs.com/blogs/ELK与loki优缺点.png" /></p>
+<p>日志分析平台组成部分:</p>
+<p>Grafana: 用于日志的页面展示</p>
+<p>Loki: 服务端,负责存储收集到的日志,同时还负责处理日志的查询</p>
+<p>Promatil: 代理,负责收集日志并将收集到的日志发送到Loki</p>
+</blockquote>
+<h2 id="_2">环境准备</h2>
+<blockquote>
+<p>腾讯云服务器: centos 7</p>
+</blockquote>
+<h2 id="grafana">Grafana安装</h2>
+<blockquote>
+<p>官方下载地址:https://dl.grafana.com/oss/release/grafana-8.4.0-1.x86_64.rpm</p>
+<p>:book:参考官方文档:https://grafana.com/docs/grafana/latest/installation/rpm/</p>
+</blockquote>
+<h3 id="_3">安装步骤</h3>
+<h4 id="1">方案1(推荐):</h4>
+<p>新建配置(腾讯源) 参考:https://mirrors.cloud.tencent.com/help/grafana.html</p>
+<pre><code class="language-shell">vi /etc/yum.repos.d/grafana.repo
+# 内容
+[grafana]
+name=grafana
+baseurl=http://mirrors.cloud.tencent.com/grafana/yum/el7
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
+</code></pre>
+<p>安装grafana</p>
+<pre><code class="language-shell"># 执行安装
+sudo yum makecache
+sudo yum install grafana
+
+# 执行结果
+[root@VM-24-9-centos src]# yum install grafana
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package grafana.x86_64 0:5.4.2-1 will be installed
+--&gt; Processing Dependency: urw-fonts for package: grafana-5.4.2-1.x86_64
+--&gt; Running transaction check
+---&gt; Package urw-base35-fonts.noarch 0:20170801-10.el7 will be installed
+--&gt; Processing Dependency: urw-base35-fonts-common = 20170801-10.el7 for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-z003-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-standard-symbols-ps-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-p052-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-nimbus-sans-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-nimbus-roman-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-nimbus-mono-ps-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-gothic-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-d050000l-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-c059-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: urw-base35-bookman-fonts for package: urw-base35-fonts-20170801-10.el7.noarch
+--&gt; Running transaction check
+---&gt; Package urw-base35-bookman-fonts.noarch 0:20170801-10.el7 will be installed
+--&gt; Processing Dependency: xorg-x11-server-utils for package: urw-base35-bookman-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: xorg-x11-server-utils for package: urw-base35-bookman-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: xorg-x11-font-utils for package: urw-base35-bookman-fonts-20170801-10.el7.noarch
+--&gt; Processing Dependency: xorg-x11-font-utils for package: urw-base35-bookman-fonts-20170801-10.el7.noarch
+---&gt; Package urw-base35-c059-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-d050000l-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-fonts-common.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-gothic-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-nimbus-mono-ps-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-nimbus-roman-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-nimbus-sans-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-p052-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-standard-symbols-ps-fonts.noarch 0:20170801-10.el7 will be installed
+---&gt; Package urw-base35-z003-fonts.noarch 0:20170801-10.el7 will be installed
+--&gt; Running transaction check
+---&gt; Package xorg-x11-font-utils.x86_64 1:7.5-21.el7 will be installed
+--&gt; Processing Dependency: libfontenc.so.1()(64bit) for package: 1:xorg-x11-font-utils-7.5-21.el7.x86_64
+---&gt; Package xorg-x11-server-utils.x86_64 0:7.7-20.el7 will be installed
+--&gt; Processing Dependency: libXxf86misc.so.1()(64bit) for package: xorg-x11-server-utils-7.7-20.el7.x86_64
+--&gt; Processing Dependency: libXt.so.6()(64bit) for package: xorg-x11-server-utils-7.7-20.el7.x86_64
+--&gt; Processing Dependency: libXmuu.so.1()(64bit) for package: xorg-x11-server-utils-7.7-20.el7.x86_64
+--&gt; Processing Dependency: libXmu.so.6()(64bit) for package: xorg-x11-server-utils-7.7-20.el7.x86_64
+--&gt; Processing Dependency: libICE.so.6()(64bit) for package: xorg-x11-server-utils-7.7-20.el7.x86_64
+--&gt; Running transaction check
+---&gt; Package libICE.x86_64 0:1.0.9-9.el7 will be installed
+---&gt; Package libXmu.x86_64 0:1.1.2-2.el7 will be installed
+---&gt; Package libXt.x86_64 0:1.1.5-3.el7 will be installed
+--&gt; Processing Dependency: libSM.so.6()(64bit) for package: libXt-1.1.5-3.el7.x86_64
+---&gt; Package libXxf86misc.x86_64 0:1.0.3-7.1.el7 will be installed
+---&gt; Package libfontenc.x86_64 0:1.1.3-3.el7 will be installed
+--&gt; Running transaction check
+---&gt; Package libSM.x86_64 0:1.2.2-2.el7 will be installed
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+====================================================================================================
+ Package                                    Arch         Version                Repository     Size
+====================================================================================================
+Installing:
+ grafana                                    x86_64       5.4.2-1                grafana        52 M
+Installing for dependencies:
+ libICE                                     x86_64       1.0.9-9.el7            os             66 k
+ libSM                                      x86_64       1.2.2-2.el7            os             39 k
+ libXmu                                     x86_64       1.1.2-2.el7            os             71 k
+ libXt                                      x86_64       1.1.5-3.el7            os            173 k
+ libXxf86misc                               x86_64       1.0.3-7.1.el7          os             19 k
+ libfontenc                                 x86_64       1.1.3-3.el7            os             31 k
+ urw-base35-bookman-fonts                   noarch       20170801-10.el7        os            852 k
+ urw-base35-c059-fonts                      noarch       20170801-10.el7        os            879 k
+ urw-base35-d050000l-fonts                  noarch       20170801-10.el7        os             75 k
+ urw-base35-fonts                           noarch       20170801-10.el7        os            7.6 k
+ urw-base35-fonts-common                    noarch       20170801-10.el7        os             19 k
+ urw-base35-gothic-fonts                    noarch       20170801-10.el7        os            650 k
+ urw-base35-nimbus-mono-ps-fonts            noarch       20170801-10.el7        os            796 k
+ urw-base35-nimbus-roman-fonts              noarch       20170801-10.el7        os            860 k
+ urw-base35-nimbus-sans-fonts               noarch       20170801-10.el7        os            1.3 M
+ urw-base35-p052-fonts                      noarch       20170801-10.el7        os            978 k
+ urw-base35-standard-symbols-ps-fonts       noarch       20170801-10.el7        os             40 k
+ urw-base35-z003-fonts                      noarch       20170801-10.el7        os            275 k
+ xorg-x11-font-utils                        x86_64       1:7.5-21.el7           os            104 k
+ xorg-x11-server-utils                      x86_64       7.7-20.el7             os            178 k
+
+Transaction Summary
+====================================================================================================
+Install  1 Package (+20 Dependent packages)
+
+Total download size: 60 M
+Installed size: 65 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/21): libICE-1.0.9-9.el7.x86_64.rpm                                        |  66 kB  00:00:00     
+(2/21): libSM-1.2.2-2.el7.x86_64.rpm                                         |  39 kB  00:00:00     
+(3/21): libXmu-1.1.2-2.el7.x86_64.rpm                                        |  71 kB  00:00:00     
+(4/21): libXt-1.1.5-3.el7.x86_64.rpm                                         | 173 kB  00:00:00     
+(5/21): libXxf86misc-1.0.3-7.1.el7.x86_64.rpm                                |  19 kB  00:00:00     
+(6/21): libfontenc-1.1.3-3.el7.x86_64.rpm                                    |  31 kB  00:00:00     
+(7/21): urw-base35-bookman-fonts-20170801-10.el7.noarch.rpm                  | 852 kB  00:00:00     
+(8/21): urw-base35-d050000l-fonts-20170801-10.el7.noarch.rpm                 |  75 kB  00:00:00     
+(9/21): urw-base35-fonts-20170801-10.el7.noarch.rpm                          | 7.6 kB  00:00:00     
+(10/21): urw-base35-c059-fonts-20170801-10.el7.noarch.rpm                    | 879 kB  00:00:00     
+(11/21): urw-base35-fonts-common-20170801-10.el7.noarch.rpm                  |  19 kB  00:00:00     
+(12/21): urw-base35-nimbus-mono-ps-fonts-20170801-10.el7.noarch.rpm          | 796 kB  00:00:00     
+(13/21): urw-base35-gothic-fonts-20170801-10.el7.noarch.rpm                  | 650 kB  00:00:00     
+(14/21): urw-base35-nimbus-roman-fonts-20170801-10.el7.noarch.rpm            | 860 kB  00:00:00     
+(15/21): urw-base35-p052-fonts-20170801-10.el7.noarch.rpm                    | 978 kB  00:00:00     
+(16/21): urw-base35-standard-symbols-ps-fonts-20170801-10.el7.noarch.rpm     |  40 kB  00:00:00     
+(17/21): urw-base35-nimbus-sans-fonts-20170801-10.el7.noarch.rpm             | 1.3 MB  00:00:00     
+(18/21): urw-base35-z003-fonts-20170801-10.el7.noarch.rpm                    | 275 kB  00:00:00     
+(19/21): xorg-x11-server-utils-7.7-20.el7.x86_64.rpm                         | 178 kB  00:00:00     
+(20/21): xorg-x11-font-utils-7.5-21.el7.x86_64.rpm                           | 104 kB  00:00:00     
+(21/21): grafana-5.4.2-1.x86_64.rpm                                          |  52 MB  00:00:43     
+----------------------------------------------------------------------------------------------------
+Total                                                               1.4 MB/s |  60 MB  00:00:43     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : urw-base35-fonts-common-20170801-10.el7.noarch                                  1/21 
+  Installing : libICE-1.0.9-9.el7.x86_64                                                       2/21 
+  Installing : libSM-1.2.2-2.el7.x86_64                                                        3/21 
+  Installing : libXt-1.1.5-3.el7.x86_64                                                        4/21 
+  Installing : libXmu-1.1.2-2.el7.x86_64                                                       5/21 
+  Installing : libfontenc-1.1.3-3.el7.x86_64                                                   6/21 
+  Installing : 1:xorg-x11-font-utils-7.5-21.el7.x86_64                                         7/21 
+  Installing : libXxf86misc-1.0.3-7.1.el7.x86_64                                               8/21 
+  Installing : xorg-x11-server-utils-7.7-20.el7.x86_64                                         9/21 
+  Installing : urw-base35-c059-fonts-20170801-10.el7.noarch                                   10/21 
+  Installing : urw-base35-z003-fonts-20170801-10.el7.noarch                                   11/21 
+  Installing : urw-base35-nimbus-mono-ps-fonts-20170801-10.el7.noarch                         12/21 
+  Installing : urw-base35-d050000l-fonts-20170801-10.el7.noarch                               13/21 
+  Installing : urw-base35-p052-fonts-20170801-10.el7.noarch                                   14/21 
+  Installing : urw-base35-nimbus-roman-fonts-20170801-10.el7.noarch                           15/21 
+  Installing : urw-base35-standard-symbols-ps-fonts-20170801-10.el7.noarch                    16/21 
+  Installing : urw-base35-bookman-fonts-20170801-10.el7.noarch                                17/21 
+  Installing : urw-base35-nimbus-sans-fonts-20170801-10.el7.noarch                            18/21 
+  Installing : urw-base35-gothic-fonts-20170801-10.el7.noarch                                 19/21 
+  Installing : urw-base35-fonts-20170801-10.el7.noarch                                        20/21 
+  Installing : grafana-5.4.2-1.x86_64                                                         21/21 
+### NOT starting on installation, please execute the following statements to configure grafana to start automatically using systemd
+ sudo /bin/systemctl daemon-reload
+ sudo /bin/systemctl enable grafana-server.service
+### You can start grafana-server by executing
+ sudo /bin/systemctl start grafana-server.service
+POSTTRANS: Running script
+  Verifying  : urw-base35-fonts-20170801-10.el7.noarch                                         1/21 
+  Verifying  : grafana-5.4.2-1.x86_64                                                          2/21 
+  Verifying  : libXmu-1.1.2-2.el7.x86_64                                                       3/21 
+  Verifying  : urw-base35-c059-fonts-20170801-10.el7.noarch                                    4/21 
+  Verifying  : libSM-1.2.2-2.el7.x86_64                                                        5/21 
+  Verifying  : urw-base35-z003-fonts-20170801-10.el7.noarch                                    6/21 
+  Verifying  : urw-base35-nimbus-mono-ps-fonts-20170801-10.el7.noarch                          7/21 
+  Verifying  : urw-base35-d050000l-fonts-20170801-10.el7.noarch                                8/21 
+  Verifying  : libXt-1.1.5-3.el7.x86_64                                                        9/21 
+  Verifying  : urw-base35-p052-fonts-20170801-10.el7.noarch                                   10/21 
+  Verifying  : urw-base35-nimbus-roman-fonts-20170801-10.el7.noarch                           11/21 
+  Verifying  : 1:xorg-x11-font-utils-7.5-21.el7.x86_64                                        12/21 
+  Verifying  : urw-base35-standard-symbols-ps-fonts-20170801-10.el7.noarch                    13/21 
+  Verifying  : urw-base35-bookman-fonts-20170801-10.el7.noarch                                14/21 
+  Verifying  : libICE-1.0.9-9.el7.x86_64                                                      15/21 
+  Verifying  : libXxf86misc-1.0.3-7.1.el7.x86_64                                              16/21 
+  Verifying  : libfontenc-1.1.3-3.el7.x86_64                                                  17/21 
+  Verifying  : xorg-x11-server-utils-7.7-20.el7.x86_64                                        18/21 
+  Verifying  : urw-base35-fonts-common-20170801-10.el7.noarch                                 19/21 
+  Verifying  : urw-base35-nimbus-sans-fonts-20170801-10.el7.noarch                            20/21 
+  Verifying  : urw-base35-gothic-fonts-20170801-10.el7.noarch                                 21/21 
+
+Installed:
+  grafana.x86_64 0:5.4.2-1                                                                          
+
+Dependency Installed:
+  libICE.x86_64 0:1.0.9-9.el7                                                                       
+  libSM.x86_64 0:1.2.2-2.el7                                                                        
+  libXmu.x86_64 0:1.1.2-2.el7                                                                       
+  libXt.x86_64 0:1.1.5-3.el7                                                                        
+  libXxf86misc.x86_64 0:1.0.3-7.1.el7                                                               
+  libfontenc.x86_64 0:1.1.3-3.el7                                                                   
+  urw-base35-bookman-fonts.noarch 0:20170801-10.el7                                                 
+  urw-base35-c059-fonts.noarch 0:20170801-10.el7                                                    
+  urw-base35-d050000l-fonts.noarch 0:20170801-10.el7                                                
+  urw-base35-fonts.noarch 0:20170801-10.el7                                                         
+  urw-base35-fonts-common.noarch 0:20170801-10.el7                                                  
+  urw-base35-gothic-fonts.noarch 0:20170801-10.el7                                                  
+  urw-base35-nimbus-mono-ps-fonts.noarch 0:20170801-10.el7                                          
+  urw-base35-nimbus-roman-fonts.noarch 0:20170801-10.el7                                            
+  urw-base35-nimbus-sans-fonts.noarch 0:20170801-10.el7                                             
+  urw-base35-p052-fonts.noarch 0:20170801-10.el7                                                    
+  urw-base35-standard-symbols-ps-fonts.noarch 0:20170801-10.el7                                     
+  urw-base35-z003-fonts.noarch 0:20170801-10.el7                                                    
+  xorg-x11-font-utils.x86_64 1:7.5-21.el7                                                           
+  xorg-x11-server-utils.x86_64 0:7.7-20.el7                                                         
+
+Complete!
+</code></pre>
+<h4 id="2">方案2:</h4>
+<pre><code class="language-shell"># 下载grafana 包
+wget https://dl.grafana.com/oss/release/grafana-8.4.0-1.x86_64.rpm
+# 安装grafana
+sudo yum install grafana-8.4.0-1.x86_64.rpm
+</code></pre>
+<h4 id="_4">启动服务:</h4>
+<pre><code class="language-shell"># 重载grafana服务的配置文件
+sudo systemctl daemon-reload
+
+# 启动grafana服务
+sudo systemctl start grafana-server
+
+
+# 查看grafana服务状态
+sudo systemctl status grafana-server
+[root@VM-24-9-centos ~]$ systemctl status grafana-server
+● grafana-server.service - Grafana instance
+   Loaded: loaded (/usr/lib/systemd/system/grafana-server.service; disabled; vendor preset: disabled)
+   Active: active (running) since Wed 2022-03-30 14:01:58 CST; 4min 42s ago
+     Docs: http://docs.grafana.org
+ Main PID: 6213 (grafana-server)
+    Tasks: 13
+   Memory: 13.1M
+   CGroup: /system.slice/grafana-server.service
+           └─6213 /usr/sbin/grafana-server --config=/etc/grafana/grafana.ini --pidfile=/var/run/g...
+
+# 停止grafana服务
+sudo systemctl stop grafana-server
+</code></pre>
+<h4 id="grafana_1">配置Grafana</h4>
+<p>略</p>
+<h2 id="loki">Loki安装</h2>
+<blockquote>
+<p>下载地址:https://github.com/grafana/loki/releases/download/v2.4.2/loki-linux-amd64.zip</p>
+<p>Loki默认配置文件下载地址:https://raw.githubusercontent.com/grafana/loki/master/cmd/loki/loki-local-config.yaml</p>
+<p>:book:参考官方文档:https://grafana.com/docs/loki/latest/installation/local/</p>
+</blockquote>
+<h3 id="_5">安装步骤</h3>
+<h4 id="loki_1">下载Loki</h4>
+<pre><code class="language-shell"># 由于服务器访问github有点慢,所以采用了代理加速
+wget https://shrill-pond-3e81.hunsh.workers.dev/https://github.com/grafana/loki/releases/download/v2.4.2/loki-linux-amd64.zip
+
+# 解压
+unzip loki-linux-amd64.zip 
+</code></pre>
+<h4 id="_6">下载配置文件</h4>
+<pre><code class="language-shell">wget https://shrill-pond-3e81.hunsh.workers.dev/https://raw.githubusercontent.com/grafana/loki/master/cmd/loki/loki-local-config.yaml
+</code></pre>
+<h3 id="loki_2">Loki配置文件调整</h3>
+<pre><code class="language-yaml">auth_enabled: false
+
+server:
+  http_listen_port: 3100 # 监听端口
+
+ingester:
+  lifecycler:
+    address: 0.0.0.0 # 监听地址
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: 1
+    final_sleep: 0s
+  chunk_idle_period: 5m
+  chunk_retain_period: 30s
+  max_transfer_retries: 0
+
+schema_config:
+  configs:
+    - from: 2018-04-15
+      store: boltdb
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 144h  #  每张表的时间范围 6天
+      chunks:
+        period: 144h
+
+storage_config:
+#  流文件存储地址
+  boltdb:
+    directory: /tmp/loki/index
+#  索引存储地址
+  filesystem:
+    directory: /tmp/loki/chunks
+
+limits_config:
+  enforce_metric_name: false
+  reject_old_samples: true
+  reject_old_samples_max_age: 144h
+
+chunk_store_config:
+  max_look_back_period: 2160h  # 最大可查询历史日期 90天
+
+
+table_manager:   # 表的保留期90天
+  retention_deletes_enabled: true
+  retention_period: 720h
+</code></pre>
+<h2 id="promtail">Promtail安装</h2>
+<blockquote>
+<p>下载地址:https://github.com/grafana/loki/releases/download/v2.4.2/promtail-linux-amd64.zip</p>
+<p>Promtail默认配置文件下载地址:https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml</p>
+<p>:book:参考官方文档:https://grafana.com/docs/loki/latest/installation/local/</p>
+</blockquote>
+<h3 id="_7">安装步骤</h3>
+<h4 id="promtail_1">下载Promtail</h4>
+<pre><code class="language-shell"># 由于服务器访问github有点慢,所以采用了代理加速
+wget https://shrill-pond-3e81.hunsh.workers.dev/https://github.com/grafana/loki/releases/download/v2.4.2/promtail-linux-amd64.zip
+
+# 解压
+unzip promtail-linux-amd64.zip
+</code></pre>
+<h4 id="_8">下载配置文件</h4>
+<pre><code class="language-shell">wget https://shrill-pond-3e81.hunsh.workers.dev/https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml
+</code></pre>
+<h3 id="promtail_2">Promtail配置文件</h3>
+<pre><code>server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: logs
+  pipeline_stages:
+  - match:
+      selector: '{job=&quot;日志分析平台&quot;}'
+      stages:
+        - regex:
+            expression: ^(?P&lt;timestamp&gt;\d+-\d+-\d+.\d+:\d+:\d+) - (?P&lt;threadid&gt;\d{3,6}) - (?P&lt;level&gt;INFO|ERROR|WARNING) - (?P&lt;filename&gt;.*?) - (?P&lt;lineno&gt;\d+) - (?P&lt;requestid&gt;\d+) - (?P&lt;systemname&gt;.*?) - (?P&lt;message&gt;.*?)$
+        - labels:
+            timestamp:
+            threadid:
+            level:
+            filename:
+            lineno:
+            requestid:
+            systemname:
+            message:
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: 日志分析平台 # labels名称
+      __path__: C://Users//Jruing//Desktop//Automation_Testing//yunwei_info.log # 采集日志的路径
+
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="Uptime-kuma%20%E7%9B%91%E6%8E%A7.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Uptime-kuma 监控">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Uptime-kuma 监控
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../nginx/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-auth_basic%E8%AE%A4%E8%AF%81.html" class="md-footer__link md-footer__link--next" aria-label="Next: Nginx学习笔记-auth_basic认证">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Nginx学习笔记-auth_basic认证
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.tabs.sections", "navigation.expand", "navigation.path", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "navigation.prune"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
